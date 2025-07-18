@@ -31,11 +31,14 @@ export function PartnersCarousel() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % partners.length);
+      setCurrentIndex((prev) => prev + 1);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
+
+  // Create an infinite loop by duplicating the partners array multiple times
+  const infinitePartners = [...partners, ...partners, ...partners];
 
   return (
     <section className="py-20 bg-white dark:bg-makmar-dark">
@@ -51,20 +54,24 @@ export function PartnersCarousel() {
         
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 272}px)` }}
+            className="flex"
+            style={{ 
+              transform: `translateX(-${(currentIndex * 272) % (partners.length * 272)}px)`,
+              transition: 'transform 0.5s ease-in-out',
+              width: `${infinitePartners.length * 272}px`
+            }}
           >
-            {partners.map((partner, index) => {
+            {infinitePartners.map((partner, index) => {
               const IconComponent = partner.icon;
               return (
                 <div
-                  key={index}
-                  className="flex-shrink-0 w-64 mx-4 bg-makmar-light dark:bg-gray-800 p-8 rounded-xl text-center"
+                  key={`${partner.name}-${index}`}
+                  className="flex-shrink-0 w-64 mx-4 bg-makmar-light dark:bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="text-white h-8 w-8" />
                   </div>
-                  <h3 className="font-semibold text-makmar-gold">{partner.name}</h3>
+                  <h3 className="font-semibold text-makmar-gold text-lg">{partner.name}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     {partner.type}
                   </p>

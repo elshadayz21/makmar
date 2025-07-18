@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,14 +9,14 @@ import {
   Users, 
   TrendingUp, 
   Shield, 
-  Settings, 
   Globe,
   Ship,
   BarChart3,
   FileText,
   Handshake,
   Clock,
-  CheckCircle
+  CheckCircle,
+  Truck
 } from "lucide-react";
 
 export default function Services() {
@@ -67,7 +68,7 @@ export default function Services() {
       ]
     },
     {
-      icon: Settings,
+      icon: Truck,
       title: t("services.supply"),
       description: t("services.supplyDesc"),
       features: [
@@ -217,6 +218,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

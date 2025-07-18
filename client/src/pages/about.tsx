@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Globe, Target, Eye, Users, Award, TrendingUp } from "lucide-react";
@@ -127,6 +128,8 @@ export default function About() {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

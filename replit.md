@@ -89,4 +89,16 @@ The application uses two main database tables:
 2. `npm start`: Runs production server serving static files and API
 3. `npm run db:push`: Applies database schema changes
 
+## Recent Changes
+
+**Latest Updates (January 18, 2025):**
+- ✓ Added 3 featured services to homepage with "View All Services" button
+- ✓ Added contact section to homepage with phone display and CTA button
+- ✓ Created reusable Footer component and added to all pages
+- ✓ Added map section to contact page with office details and directions
+- ✓ Created admin route (/admin) with contact dashboard and analytics
+- ✓ Modified partners carousel to infinite sliding animation (3-second intervals)
+- ✓ Replaced Settings icon with Truck icon for supply chain services
+- ✓ Added shadcn/ui Table and Badge components for admin dashboard
+
 The application is designed to be easily deployable on platforms like Replit, Vercel, or traditional hosting providers with minimal configuration required.
