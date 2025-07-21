@@ -5,7 +5,15 @@ import { PartnersCarousel } from "@/components/partners-carousel";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Building, Globe, TrendingUp, Shield, Users, Phone, Truck } from "lucide-react";
+import {
+  Building,
+  Globe,
+  TrendingUp,
+  Shield,
+  Users,
+  Phone,
+  Truck,
+} from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -49,7 +57,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <StatsSection />
-      
+
       {/* About Section */}
       <section className="py-20 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,17 +119,22 @@ export default function Home() {
               {t("services.subtitle")}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.slice(0, 3).map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <Card key={index} className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                <Card
+                  key={index}
+                  className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow"
+                >
                   <CardContent className="p-8">
                     <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mb-6">
                       <IconComponent className="text-white h-8 w-8" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
+                    <h3 className="text-xl font-semibold mb-4">
+                      {service.title}
+                    </h3>
                     <p className="text-gray-600 dark:text-gray-300 mb-6">
                       {service.description}
                     </p>
@@ -130,7 +143,7 @@ export default function Home() {
               );
             })}
           </div>
-          
+
           <div className="text-center mt-12">
             <Link href="/services">
               <Button className="bg-makmar-gold hover:bg-makmar-gold-dark text-white px-8 py-3 rounded-lg font-semibold">
@@ -142,7 +155,7 @@ export default function Home() {
       </section>
 
       <PartnersCarousel />
-      
+
       {/* Contact Section */}
       <section className="py-20 bg-makmar-gold">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -154,7 +167,11 @@ export default function Home() {
               {t("contact.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+              <Link
+                href="/contact"
+                replace
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
                 <Button className="bg-white text-makmar-gold hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold">
                   {t("contact.sendMessage")}
                 </Button>
@@ -182,51 +199,112 @@ export default function Home() {
                   <p className="text-sm text-gray-300">TRADING PLC</p>
                 </div>
               </div>
-              <p className="text-gray-300 mb-4">
-                {t("footer.description")}
-              </p>
+              <p className="text-gray-300 mb-4">{t("footer.description")}</p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-makmar-gold transition-colors">
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-makmar-gold transition-colors"
+                >
                   <Building className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-makmar-gold transition-colors">
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-makmar-gold transition-colors"
+                >
                   <Globe className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-makmar-gold transition-colors">
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-makmar-gold transition-colors"
+                >
                   <Users className="h-5 w-5" />
                 </a>
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4 text-makmar-gold">
                 {t("footer.quickLinks")}
               </h4>
               <ul className="space-y-2">
-                <li><Link href="/" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("nav.home")}</Link></li>
-                <li><Link href="/about" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("nav.about")}</Link></li>
-                <li><Link href="/services" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("nav.services")}</Link></li>
-                <li><Link href="/contact" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("nav.contact")}</Link></li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("nav.home")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("nav.about")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("nav.services")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("nav.contact")}
+                  </Link>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4 text-makmar-gold">
                 {t("services.title")}
               </h4>
               <ul className="space-y-2">
-                <li><Link href="/services" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("services.importExport")}</Link></li>
-                <li><Link href="/services" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("services.partnerships")}</Link></li>
-                <li><Link href="/services" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("services.analysis")}</Link></li>
-                <li><Link href="/services" className="text-gray-300 hover:text-makmar-gold transition-colors">{t("services.consultation")}</Link></li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("services.importExport")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("services.partnerships")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("services.analysis")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-gray-300 hover:text-makmar-gold transition-colors"
+                  >
+                    {t("services.consultation")}
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
-              {t("footer.copyright")}
-            </p>
+            <p className="text-gray-400">{t("footer.copyright")}</p>
           </div>
         </div>
       </footer>

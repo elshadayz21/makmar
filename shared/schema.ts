@@ -36,7 +36,7 @@
 // export type InsertContact = z.infer<typeof insertContactSchema>;
 // export type Contact = typeof contacts.$inferSelect;
 
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -54,6 +54,7 @@ export const contacts = pgTable("contacts", {
   subject: text("subject").notNull(),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  read: boolean("read").default(false).notNull(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({

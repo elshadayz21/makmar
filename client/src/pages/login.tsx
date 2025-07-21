@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertUserSchema } from "@shared/schema";
 import { z } from "zod";
 import { Lock, User, Shield } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
 const loginSchema = insertUserSchema.extend({
@@ -24,6 +24,7 @@ export default function Login() {
   const [, navigate] = useLocation();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -55,6 +56,7 @@ export default function Login() {
         title: "Login Successful",
         description: "Welcome to the admin dashboard",
       });
+      queryClient.invalidateQueries({ queryKey: ["/api/auth/check"] });
       navigate("/admin");
     },
     onError: (error: Error) => {

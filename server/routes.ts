@@ -188,6 +188,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Mark contact as read
+  app.post("/api/contacts/:id/read", async (req, res) => {
+    const id = Number(req.params.id);
+    try {
+      await storage.markContactAsRead(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to mark as read" });
+    }
+  });
+
   // Get all users (for admin purposes)
   app.get("/api/users", async (req, res) => {
     try {

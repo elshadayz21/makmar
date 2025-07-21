@@ -83,4 +83,8 @@ export const storage = {
   async getUsers(): Promise<User[]> {
     return db.select().from(users);
   },
+
+  async markContactAsRead(id: number): Promise<void> {
+    await db.update(contacts).set({ read: true }).where(eq(contacts.id, id));
+  },
 };
