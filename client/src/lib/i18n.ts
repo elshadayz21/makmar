@@ -19,8 +19,8 @@ export const translations = {
       experience: "Years Experience",
     },
     about: {
-      title: "About Makmar Trading",
-      description: "With over 15 years of experience in international trading, Makmar Trading PLC has established itself as a trusted partner in global commerce.",
+      title: "About MakMar Trading",
+      description: "With over 15 years of experience in international trading, MakMar Trading PLC has established itself as a trusted partner in global commerce.",
       mission: "Our Mission",
       missionText: "To facilitate seamless international trade connections and create value for our global partners.",
       vision: "Our Vision",
@@ -52,7 +52,7 @@ export const translations = {
       info: "Contact Information",
       address: "123 Business District, Addis Ababa, Ethiopia",
       phone: "+251 11 123 4567",
-      email: "info@makmartrading.com",
+      email: "info@MakMartrading.com",
       hours: "Mon - Fri: 8:00 AM - 6:00 PM",
       followUs: "Follow Us",
       sendMessage: "Send us a Message",
@@ -65,7 +65,7 @@ export const translations = {
     footer: {
       description: "Your trusted partner in international trading, connecting businesses across global markets with excellence and reliability.",
       quickLinks: "Quick Links",
-      copyright: "© 2024 Makmar Trading PLC. All rights reserved.",
+      copyright: `&copy; ${new Date().getFullYear()} MakMar Trading PLC. All rights reserved.`,
     },
   },
   am: {
@@ -121,7 +121,7 @@ export const translations = {
       info: "የመገናኛ መረጃ",
       address: "123 የንግድ ዞን፣ አዲስ አበባ፣ ኢትዮጵያ",
       phone: "+251 11 123 4567",
-      email: "info@makmartrading.com",
+      email: "info@MakMartrading.com",
       hours: "ሰኞ - አርብ: 8:00 ጠዋት - 6:00 ምሽት",
       followUs: "ተከታተሉን",
       sendMessage: "መልዕክት ላኩልን",
@@ -134,7 +134,7 @@ export const translations = {
     footer: {
       description: "በአለም አቀፍ ንግድ ውስጥ የታመነ አጋርዎ፣ ንግዶችን በአለም አቀፍ ገበያዎች ላይ በልዩነት እና በታማኝነት ማገናኘት።",
       quickLinks: "ፈጣን ማገናኛዎች",
-      copyright: "© 2024 ማክማር ትሬዲንግ PLC። ሁሉም መብቶች የተጠበቁ ናቸው።",
+    copyright: `&copy; ${new Date().getFullYear()} ማክማር ትሬዲንግ PLC። ሁሉም መብቶች የተጠበቁ ናቸው።`,
     },
   },
 };

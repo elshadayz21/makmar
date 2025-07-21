@@ -12,23 +12,34 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertContactSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Instagram 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
 } from "lucide-react";
 import { z } from "zod";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 type ContactForm = z.infer<typeof insertContactSchema>;
 
 export default function Contact() {
   const { t } = useLanguage();
   const { toast } = useToast();
+
+  const mapContainerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+
+  const center = {
+    lat: 9.03, // Latitude for Addis Ababa
+    lng: 38.74, // Longitude for Addis Ababa
+  };
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(insertContactSchema),
@@ -46,10 +57,27 @@ export default function Contact() {
       const response = await apiRequest("POST", "/api/contact", data);
       return response.json();
     },
-    onSuccess: () => {
+    //   onSuccess: () => {
+    //     toast({
+    //       title: "Message Sent Successfully!",
+    //       description: "Thank you for your message. We will get back to you soon.",
+    //     });
+    //     form.reset();
+    //   },
+    //   onError: (error) => {
+    //     toast({
+    //       title: "Error",
+    //       description: "Failed to send message. Please try again.",
+    //       variant: "destructive",
+    //     });
+    //   },
+    // }
+    onSuccess: (data) => {
       toast({
         title: "Message Sent Successfully!",
-        description: "Thank you for your message. We will get back to you soon.",
+        description: data.emailSent
+          ? "Your message has been sent to our team via email. We will get back to you soon."
+          : "Your message has been saved. We will get back to you soon.",
       });
       form.reset();
     },
@@ -76,9 +104,9 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
+      <section className="pt-24 pb-10 bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -92,7 +120,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-white dark:bg-makmar-dark">
+      <section className="py-12 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-8">
@@ -129,7 +157,7 @@ export default function Contact() {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
@@ -152,16 +180,21 @@ export default function Contact() {
                 </CardContent>
               </Card>
             </div>
-            
+
             <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
                   {t("contact.sendMessage")}
                 </h3>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">{t("contact.firstName")}</Label>
+                      <Label htmlFor="firstName">
+                        {t("contact.firstName")}
+                      </Label>
                       <Input
                         id="firstName"
                         {...form.register("firstName")}
@@ -238,7 +271,9 @@ export default function Contact() {
                     className="w-full bg-makmar-gold hover:bg-makmar-gold-dark text-white py-3 px-6 rounded-lg font-semibold"
                     disabled={contactMutation.isPending}
                   >
-                    {contactMutation.isPending ? "Sending..." : t("contact.sendButton")}
+                    {contactMutation.isPending
+                      ? "Sending..."
+                      : t("contact.sendButton")}
                   </Button>
                 </form>
               </CardContent>
@@ -255,10 +290,11 @@ export default function Contact() {
               Find <span className="text-makmar-gold">Our Location</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Visit our offices in Addis Ababa, Ethiopia. We're conveniently located in the heart of the business district.
+              Visit our offices in Addis Ababa, Ethiopia. We're conveniently
+              located in the heart of the business district.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-6">
               <Card className="bg-white dark:bg-gray-800 shadow-lg">
@@ -292,7 +328,7 @@ export default function Contact() {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-white dark:bg-gray-800 shadow-lg">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-4">Getting Here</h3>
@@ -301,7 +337,9 @@ export default function Contact() {
                       <div className="w-6 h-6 bg-makmar-gold rounded-full flex items-center justify-center mr-3 mt-0.5">
                         <span className="text-white text-xs">1</span>
                       </div>
-                      <p>Located in the central business district of Addis Ababa</p>
+                      <p>
+                        Located in the central business district of Addis Ababa
+                      </p>
                     </div>
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-makmar-gold rounded-full flex items-center justify-center mr-3 mt-0.5">
@@ -319,23 +357,20 @@ export default function Contact() {
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="relative">
               <div className="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-makmar-gold mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-makmar-gold mb-2">
-                      Interactive Map
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Map integration coming soon
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                      Location: Addis Ababa, Ethiopia
-                    </p>
-                  </div>
-                </div>
+                
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019123456789!2d-122.419415484681!3d37.7749297797596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c1234567%3A0xabcdef1234567890!2sYour+Business+Name!5e0!3m2!1sen!2sus!4v1681234567890!5m2!1sen!2sus"
+                    width="100%"
+                    height="400"
+                    style={{ border: 0 }}
+                    // allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+     
               </div>
             </div>
           </div>

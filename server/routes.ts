@@ -53,7 +53,7 @@ import { storage } from "./storage";
 import { insertContactSchema, insertUserSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
-
+import { sendContactEmail } from "./emailService"; // adjust path as needed
 // Extend Express session type
 declare module "express-session" {
   interface SessionData {
@@ -158,6 +158,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
+      await sendContactEmail({
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        email: validatedData.email,
+        subject: validatedData.subject,
+        message: validatedData.message,
+      });
       res.status(201).json({ 
         message: "Contact form submitted successfully", 
         contact: contact 

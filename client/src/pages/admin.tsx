@@ -13,12 +13,15 @@ import type { Contact } from "@shared/schema";
 import { useLocation } from "wouter";
 import React, { useState } from "react";
 
+const PAGE_SIZE = 10; // contacts per page
+
 export default function Admin() {
   const { t } = useLanguage();
   const [, navigate] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [expandedMessages, setExpandedMessages] = useState<Record<number, boolean>>({});
+  const [page, setPage] = useState(1);
 
   // Helper to determine if a message is long
   const isLongMessage = (msg: string, limit = 100) => msg.length > limit;
@@ -129,6 +132,11 @@ const calculateGrowthRate = (contacts) => {
     },
   ];
 
+  const totalPages = contacts ? Math.ceil(contacts.length / PAGE_SIZE) : 1;
+  const paginatedContacts = contacts
+    ? contacts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+    : [];
+
   const logoutMutation = useMutation({
     mutationFn: async () => {
       const response = await fetch("/api/logout", {
@@ -237,7 +245,7 @@ const calculateGrowthRate = (contacts) => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {contacts.map((contact) => {
+                  {paginatedContacts.map((contact) => {
                     const expanded = expandedMessages[contact.id] || false;
                     const longMsg = isLongMessage(contact.message);
                     const isRead = contact.read;
@@ -309,6 +317,11 @@ const calculateGrowthRate = (contacts) => {
               </div>
             )}
           </CardContent>
+          <div className="flex justify-center gap-2 mt-4">
+            <Button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Previous</Button>
+            <span>Page {page} of {totalPages}</span>
+            <Button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}>Next</Button>
+          </div>
         </Card>
       </div>
 
