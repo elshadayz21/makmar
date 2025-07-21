@@ -32,14 +32,16 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="w-full h-96 bg-gradient-to-br from-makmar-gold/20 to-makmar-gold/10 rounded-2xl flex items-center justify-center">
+          <div className="hidden lg:block relative">
+            <div className=" w-full h-96 bg-gradient-to-br from-makmar-gold/20 to-makmar-gold/10 rounded-2xl flex items-center justify-center">
               <div className="text-center">
-                <div className="w-32 h-32 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                {/* <div className="w-32 h-32 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-6xl">M</span>
-                </div>
-                <h3 className="text-2xl font-bold text-makmar-gold mb-2">MAKMAR</h3>
-                <p className="text-makmar-gold font-medium">TRADING PLC</p>
+                </div> */}
+                {/* <h3 className="text-2xl font-bold text-makmar-gold mb-2">MAKMAR</h3> */}
+                {/* <p className="text-makmar-gold font-medium">TRADING PLC</p> */}
+      <img src="/public/makmar-Web-logo-removebg-preview.png" alt="MakMar Logo" className=" justify-center" />
+              
               </div>
             </div>
           </div>

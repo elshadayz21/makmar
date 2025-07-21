@@ -13,7 +13,7 @@ import type { Contact } from "@shared/schema";
 import { useLocation } from "wouter";
 import React, { useState } from "react";
 
-const PAGE_SIZE = 10; // contacts per page
+const PAGE_SIZE = 5; // contacts per page
 
 export default function Admin() {
   const { t } = useLanguage();
@@ -317,7 +317,7 @@ const calculateGrowthRate = (contacts) => {
               </div>
             )}
           </CardContent>
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-2 mt-4 mb-10">
             <Button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Previous</Button>
             <span>Page {page} of {totalPages}</span>
             <Button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}>Next</Button>

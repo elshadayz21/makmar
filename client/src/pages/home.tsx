@@ -94,13 +94,19 @@ export default function Home() {
                 </Card>
               </div>
             </div>
-            <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center">
+            <div className="hidden lg:block  relative">
+              
+              <div className="w-full h-80  from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center">
+                  {/* <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-36 h-36 justify-center mb-6" /> */}
+                  <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-full h-full justify-center mb-6 rounded-2xl" />
+           
                 <div className="text-center">
-                  <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
+                  {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-makmar-gold">
                     Global Trading Network
-                  </h3>
+                  </h3> */}
+                  {/* <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-36 h-36 justify-center mb-6" /> */}
+
                 </div>
               </div>
             </div>
