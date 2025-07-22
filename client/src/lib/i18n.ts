@@ -65,7 +65,7 @@ export const translations = {
     footer: {
       description: "Your trusted partner in international trading, connecting businesses across global markets with excellence and reliability.",
       quickLinks: "Quick Links",
-      copyright: `&copy; ${new Date().getFullYear()} MakMar Trading PLC. All rights reserved.`,
+      copyright: `© ${new Date().getFullYear()} MakMar Trading PLC. All rights reserved.`,
     },
   },
   am: {
@@ -134,7 +134,7 @@ export const translations = {
     footer: {
       description: "በአለም አቀፍ ንግድ ውስጥ የታመነ አጋርዎ፣ ንግዶችን በአለም አቀፍ ገበያዎች ላይ በልዩነት እና በታማኝነት ማገናኘት።",
       quickLinks: "ፈጣን ማገናኛዎች",
-    copyright: `&copy; ${new Date().getFullYear()} ማክማር ትሬዲንግ PLC። ሁሉም መብቶች የተጠበቁ ናቸው።`,
+    copyright: `© ${new Date().getFullYear()} ማክማር ትሬዲንግ PLC። ሁሉም መብቶች የተጠበቁ ናቸው።`,
     },
   },
 };

@@ -19,7 +19,7 @@ export default function Admin() {
   const { t } = useLanguage();
   const [, navigate] = useLocation();
   const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(); 
   const [expandedMessages, setExpandedMessages] = useState<Record<number, boolean>>({});
   const [page, setPage] = useState(1);
 

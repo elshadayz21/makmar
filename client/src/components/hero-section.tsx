@@ -13,20 +13,32 @@ export function HeroSection() {
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 <span className="text-makmar-gold">Excellence</span> in
-                <br />Global Trading
+                <br />
+                Global Trading
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-lg">
                 {t("hero.subtitle")}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact">
+              <Link
+                href="/contact"
+                replace
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
                 <Button className="bg-makmar-gold hover:bg-makmar-gold-dark text-white px-8 py-3 rounded-lg font-semibold">
                   {t("hero.getStarted")}
                 </Button>
               </Link>
-              <Link href="/about">
-                <Button variant="outline" className="border-makmar-gold text-makmar-gold hover:bg-makmar-gold hover:text-white px-8 py-3 rounded-lg font-semibold">
+              <Link
+                href="/about"
+                replace
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                <Button
+                  variant="outline"
+                  className="border-makmar-gold text-makmar-gold hover:bg-makmar-gold hover:text-white px-8 py-3 rounded-lg font-semibold"
+                >
                   {t("hero.learnMore")}
                 </Button>
               </Link>
@@ -40,8 +52,11 @@ export function HeroSection() {
                 </div> */}
                 {/* <h3 className="text-2xl font-bold text-makmar-gold mb-2">MAKMAR</h3> */}
                 {/* <p className="text-makmar-gold font-medium">TRADING PLC</p> */}
-      <img src="/public/makmar-Web-logo-removebg-preview.png" alt="MakMar Logo" className=" justify-center" />
-              
+                <img
+                  src="/public/makmar-Web-logo-removebg-preview.png"
+                  alt="MakMar Logo"
+                  className=" justify-center"
+                />
               </div>
             </div>
           </div>

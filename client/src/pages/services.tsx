@@ -210,7 +210,8 @@ export default function Services() {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Let's discuss how our services can help expand your business into global markets.
             </p>
-            <Link href="/contact">
+            <Link href="/contact"      replace
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <Button className="bg-white text-makmar-gold hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg">
                 Get Started Today
               </Button>

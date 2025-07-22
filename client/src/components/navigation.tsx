@@ -5,7 +5,13 @@ import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/theme-provider";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +43,13 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`nav-link ${isActive(item.href) ? "nav-link-active" : ""}`}
+                  className={`nav-link ${
+                    isActive(item.href) ? "nav-link-active" : ""
+                  }`}
+                  // replace
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
                 >
                   {item.label}
                 </Link>
@@ -56,7 +68,7 @@ export function Navigation() {
                 <SelectItem value="am">አማ</SelectItem>
               </SelectContent>
             </Select>
-            
+
             <Button
               variant="ghost"
               size="icon"
@@ -69,7 +81,7 @@ export function Navigation() {
                 <Sun className="h-5 w-5" />
               )}
             </Button>
-            
+
             <Button
               variant="ghost"
               size="icon"
@@ -95,11 +107,16 @@ export function Navigation() {
                 key={item.href}
                 href={item.href}
                 className={`block px-3 py-2 font-medium ${
-                  isActive(item.href) 
-                    ? "text-makmar-gold" 
+                  isActive(item.href)
+                    ? "text-makmar-gold"
                     : "hover:text-makmar-gold"
                 }`}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                replace
+                // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 {item.label}
               </Link>

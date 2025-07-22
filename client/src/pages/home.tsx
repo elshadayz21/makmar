@@ -95,18 +95,20 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden lg:block  relative">
-              
               <div className="w-full h-80  from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center">
-                  {/* <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-36 h-36 justify-center mb-6" /> */}
-                  <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-full h-full justify-center mb-6 rounded-2xl" />
-           
+                <img
+                  src="/public/global-trading-service.gif"
+                  alt="MakMar Logo"
+                  className="w-full h-full justify-center mb-6 rounded-2xl"
+                />
+                {/* <img src="/public/trade-world.gif" alt="MakMar Logo" className="w-full h-full justify-center mb-6 rounded-2xl" /> */}
+
                 <div className="text-center">
                   {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-makmar-gold">
                     Global Trading Network
                   </h3> */}
                   {/* <img src="/public/global-trading-service.gif" alt="MakMar Logo" className="w-36 h-36 justify-center mb-6" /> */}
-
                 </div>
               </div>
             </div>
@@ -151,7 +153,11 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/services">
+            <Link
+              href="/services"
+              replace
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
               <Button className="bg-makmar-gold hover:bg-makmar-gold-dark text-white px-8 py-3 rounded-lg font-semibold">
                 View All Services
               </Button>
@@ -197,12 +203,38 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-makmar-gold rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-xl">M</span>
+                <div className="w-20 h-12  rounded-lg flex items-center justify-center mr-3">
+                  {/* <span className="text-white font-bold text-xl">M</span> */}
+                  <Link
+                    to="/"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  >
+                    <img
+                      src="/public/makmar-Web-logo-removebg-preview.png"
+                      alt="MakMar Logo"
+                      className=" justify-center"
+                    />
+                  </Link>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-makmar-gold">MAKMAR</h3>
-                  <p className="text-sm text-gray-300">TRADING PLC</p>
+                <div className=" w-20 h-12 rounded-lg flex items-center justify-center mr-3">
+                  {/* <h3 className="text-xl font-bold text-makmar-gold">MAKMAR</h3>
+                  <p className="text-sm text-gray-300">TRADING PLC</p> */}
+                  {/* <Link
+                    to="/"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  >
+                    <img
+                      src="/public/makmar-Web-logo-removebg-preview.png"
+                      alt="MakMar Logo"
+                      className=" justify-center"
+                    />
+                  </Link> */}
                 </div>
               </div>
               <p className="text-gray-300 mb-4">{t("footer.description")}</p>
@@ -237,6 +269,10 @@ export default function Home() {
                   <Link
                     href="/"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("nav.home")}
                   </Link>
@@ -245,6 +281,10 @@ export default function Home() {
                   <Link
                     href="/about"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("nav.about")}
                   </Link>
@@ -253,6 +293,10 @@ export default function Home() {
                   <Link
                     href="/services"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("nav.services")}
                   </Link>
@@ -261,6 +305,10 @@ export default function Home() {
                   <Link
                     href="/contact"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("nav.contact")}
                   </Link>
@@ -277,6 +325,10 @@ export default function Home() {
                   <Link
                     href="/services"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("services.importExport")}
                   </Link>
@@ -285,6 +337,10 @@ export default function Home() {
                   <Link
                     href="/services"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("services.partnerships")}
                   </Link>
@@ -293,6 +349,10 @@ export default function Home() {
                   <Link
                     href="/services"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("services.analysis")}
                   </Link>
@@ -301,6 +361,10 @@ export default function Home() {
                   <Link
                     href="/services"
                     className="text-gray-300 hover:text-makmar-gold transition-colors"
+                    replace
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {t("services.consultation")}
                   </Link>
