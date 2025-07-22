@@ -15,6 +15,7 @@ import {
   Truck,
 } from "lucide-react";
 import { Link } from "wouter";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -56,10 +57,9 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
-      <StatsSection />
 
       {/* About Section */}
-      <section className="py-20 bg-white dark:bg-makmar-dark">
+      <section className="py-16 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -115,6 +115,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <StatsSection />
 
       {/* Services Section */}
       <section className="py-20 bg-makmar-light dark:bg-gray-900">
@@ -198,14 +200,15 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-makmar-dark text-white py-12">
+      <Footer />
+
+      {/* <footer className="bg-makmar-dark text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-6">
                 <div className="w-20 h-12  rounded-lg flex items-center justify-center mr-3">
-                  {/* <span className="text-white font-bold text-xl">M</span> */}
-                  <Link
+                               <Link
                     to="/"
                     replace
                     onClick={() =>
@@ -220,21 +223,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className=" w-20 h-12 rounded-lg flex items-center justify-center mr-3">
-                  {/* <h3 className="text-xl font-bold text-makmar-gold">MAKMAR</h3>
-                  <p className="text-sm text-gray-300">TRADING PLC</p> */}
-                  {/* <Link
-                    to="/"
-                    replace
-                    onClick={() =>
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                  >
-                    <img
-                      src="/public/makmar-Web-logo-removebg-preview.png"
-                      alt="MakMar Logo"
-                      className=" justify-center"
-                    />
-                  </Link> */}
+                 
                 </div>
               </div>
               <p className="text-gray-300 mb-4">{t("footer.description")}</p>
@@ -377,7 +366,7 @@ export default function Home() {
             <p className="text-gray-400">{t("footer.copyright")}</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
+    <section className="pt-20  flex items-center bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">

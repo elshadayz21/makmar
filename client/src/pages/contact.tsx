@@ -106,7 +106,7 @@ export default function Contact() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-10 bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
+      <section className="pt-24  bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -123,63 +123,7 @@ export default function Contact() {
       <section className="py-12 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
-                    {t("contact.info")}
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <MapPin className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">
-                        {t("contact.address")}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">
-                        {t("contact.phone")}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Mail className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">
-                        {t("contact.email")}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
-                      <span className="text-gray-600 dark:text-gray-300">
-                        {t("contact.hours")}
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
-                    {t("contact.followUs")}
-                  </h3>
-                  <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => {
-                      const IconComponent = social.icon;
-                      return (
-                        <a
-                          key={index}
-                          href={social.href}
-                          className="w-10 h-10 bg-makmar-gold rounded-lg flex items-center justify-center text-white hover:bg-makmar-gold-dark transition-colors"
-                        >
-                          <IconComponent className="h-5 w-5" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            
 
             <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
               <CardContent className="p-8">
@@ -278,6 +222,63 @@ export default function Contact() {
                 </form>
               </CardContent>
             </Card>
+            <div className="space-y-8">
+              <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
+                    {t("contact.info")}
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center">
+                      <MapPin className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
+                      <span className="text-gray-600 dark:text-gray-300">
+                        {t("contact.address")}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Phone className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
+                      <span className="text-gray-600 dark:text-gray-300">
+                        {t("contact.phone")}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Mail className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
+                      <span className="text-gray-600 dark:text-gray-300">
+                        {t("contact.email")}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="h-6 w-6 text-makmar-gold mr-3 flex-shrink-0" />
+                      <span className="text-gray-600 dark:text-gray-300">
+                        {t("contact.hours")}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-makmar-light dark:bg-gray-800 shadow-lg">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-semibold mb-6 text-makmar-gold">
+                    {t("contact.followUs")}
+                  </h3>
+                  <div className="flex space-x-4">
+                    {socialLinks.map((social, index) => {
+                      const IconComponent = social.icon;
+                      return (
+                        <a
+                          key={index}
+                          href={social.href}
+                          className="w-10 h-10 bg-makmar-gold rounded-lg flex items-center justify-center text-white hover:bg-makmar-gold-dark transition-colors"
+                        >
+                          <IconComponent className="h-5 w-5" />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
