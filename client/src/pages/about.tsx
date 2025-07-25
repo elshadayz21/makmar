@@ -87,13 +87,14 @@ const [AboutItemsData, setAboutItemsData] = useState<AboutItems>()
       {/* Mission & Vision */}
       <section className="py-20 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" >
        {AboutItemsData && AboutItemsData?.vision_mission_card?.map((card) => {
         return(
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" key={card.id}>
-            <Card className="bg-makmar-light dark:bg-gray-800 border-makmar-gold border-2">
+            <Card className="bg-makmar-light dark:bg-gray-800 border-makmar-gold border-2" key={card.id}>
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
                   {/* <Target className="text-white h-8 w-8" /> */}
+                  {/* {card.icon} */}
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-makmar-gold">
                   {/* {t("about.mission")} */}
@@ -106,22 +107,23 @@ const [AboutItemsData, setAboutItemsData] = useState<AboutItems>()
               </CardContent>
             </Card>
             
-            {/* <Card className="bg-makmar-light dark:bg-gray-800 border-makmar-gold border-2">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Eye className="text-white h-8 w-8" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-makmar-gold">
-                  {t("about.vision")}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-lg">
-                  {t("about.visionText")}
-                </p>
-              </CardContent>
-            </Card> */}
-          </div>
+            // <Card className="bg-makmar-light dark:bg-gray-800 border-makmar-gold border-2">
+            //   <CardContent className="p-8 text-center">
+            //     <div className="w-16 h-16 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
+            //       <Eye className="text-white h-8 w-8" />
+            //     </div>
+            //     <h3 className="text-2xl font-bold mb-4 text-makmar-gold">
+            //       {t("about.vision")}
+            //     </h3>
+            //     <p className="text-gray-600 dark:text-gray-300 text-lg">
+            //       {t("about.visionText")}
+            //     </p>
+            //   </CardContent>
+            // </Card> 
         )
        })}
+          </div>
+
         </div>
       </section>
 
