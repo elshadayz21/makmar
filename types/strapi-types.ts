@@ -50,6 +50,7 @@ export interface AboutItems {
     why_MakMar: PageHeader;
     visionAndMission: serviceProcessCard[];
     tradingNetwork:serviceProcessCard;
+    why_MakMarCard: Card[];
   };
 }
 

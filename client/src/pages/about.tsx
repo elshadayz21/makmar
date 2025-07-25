@@ -157,17 +157,18 @@ const [AboutItemsData, setAboutItemsData] = useState<AboutItems>()
               );
             })}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => {
+            {AboutItemsData &&
+            AboutItemsData?.why_chose_MakMar_Card?.map((header) => {
               // const IconComponent = highlight.icon;
               return (
-                <Card key={index} className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                <Card key={header.id} className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
                   <CardContent className="p-8 text-center">
                     <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-6">
                       {/* <IconComponent className="text-white h-8 w-8" /> */}
                     </div>
-                    <h3 className="text-xl font-semibold mb-4">{highlight.title}</h3>
+                    <h3 className="text-xl font-semibold mb-4">{header.title}</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      {highlight.description}
+                      {header.desc}
                     </p>
                   </CardContent>
                 </Card>

@@ -72,14 +72,14 @@ export const ServiceItemFetch = async () => {
             : [],
         }))
       : [],
-       service_process_card : Array.isArray(new_data?.service_process_card )
-      ? new_data.service_process_card .map((card: any) => ({
+    service_process_card: Array.isArray(new_data?.service_process_card)
+      ? new_data.service_process_card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
           icon: card.icon || "",
           desc: card.desc || "",
-      
-                step: card.step || "",
+
+          step: card.step || "",
         }))
       : [],
   };

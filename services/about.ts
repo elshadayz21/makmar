@@ -6,7 +6,7 @@ export const AboutItemFetch = async () => {
   const res = await fetch(
     `${
       import.meta.env.VITE_STRAPI_IP_DEV
-    }/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card&populate=Global_Trading_Network`,
+    }/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card&populate=Global_Trading_Network&populate=why_chose_MakMar_Card`,
     {
       method: "GET",
       headers: {
@@ -59,6 +59,16 @@ export const AboutItemFetch = async () => {
       : [],
     vision_mission_card: Array.isArray(new_data?.vision_mission_card)
       ? new_data.vision_mission_card.map((card: any) => ({
+          id: card.id || "",
+          title: card.title || "",
+          icon: card.icon || "",
+          desc: card.desc || "",
+          step: card.step || "",
+          
+        }))
+      : [],
+       why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
+      ? new_data.why_chose_MakMar_Card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
           icon: card.icon || "",
