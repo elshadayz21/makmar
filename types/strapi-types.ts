@@ -37,19 +37,39 @@ interface Card {
 
 interface serviceProcessCard {
   id: number;
-  title: string; 
+  title: string;
   desc: string;
   step: number;
   icon: string;
 }
 
+interface contactInfo {
+  id: number;
+  location: string;
+  phone_number: string;
+  email: string;
+  openHours: string;
+}
 
+interface socialMedia {
+  id: number;
+  socialLink: string;
+  // instagram: string;
+  // twitter: string;
+  // linkedin: string;
+  // telegram: string;
+  // youtube: string;
+}
+
+interface Getting_There {
+  reference: string;
+}
 export interface AboutItems {
   data: {
     aboutHeader: PageHeader;
     why_MakMar: PageHeader;
     visionAndMission: serviceProcessCard[];
-    tradingNetwork:serviceProcessCard;
+    tradingNetwork: serviceProcessCard;
     why_MakMarCard: Card[];
   };
 }
@@ -61,6 +81,20 @@ export interface ServiceItems {
     serviceCard: Card[];
     serviceProcessHeader: PageHeader;
     serviceProcessCard: serviceProcessCard[];
-
   };
+}
+export interface ContactUsItems {
+  data: {
+    contactHeader: PageHeader;
+    findUsMap: PageHeader;
+    contactInfo: contactInfo;
+    socialMedia: socialMedia[];
+    Getting_There: Getting_There[];
+  };
+
+  // export interface HomePage{
+  //   data:{
+
+  //   }
+  // }
 }

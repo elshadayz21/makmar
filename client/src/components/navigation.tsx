@@ -59,7 +59,7 @@ export function Navigation() {
 
           {/* Language & Theme Toggle */}
           <div className="flex items-center space-x-4">
-            <Select value={language} onValueChange={setLanguage}>
+            {/* <Select value={language} onValueChange={setLanguage}>
               <SelectTrigger className="w-16 bg-transparent border-gray-300 dark:border-gray-600">
                 <SelectValue />
               </SelectTrigger>
@@ -67,7 +67,7 @@ export function Navigation() {
                 <SelectItem value="en">EN</SelectItem>
                 <SelectItem value="am">አማ</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
 
             <Button
               variant="ghost"

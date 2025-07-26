@@ -18,11 +18,11 @@ export function Footer() {
                 <h3 className="text-xl font-bold text-makmar-gold">MAKMAR</h3>
                 <p className="text-sm text-gray-300">TRADING PLC</p>
               </div> */}
-               <img
-            src="/public/makmar-Web-logo-removebg-preview.png"
-            alt="MakMar Logo"
-            className=" justify-center"
-          />
+              <img
+                src="/public/makmar-Web-logo-removebg-preview.png"
+                alt="MakMar Logo"
+                className=" justify-center"
+              />
             </div>
             <p className="text-gray-300 mb-4">{t("footer.description")}</p>
             <div className="flex space-x-4">
@@ -156,8 +156,25 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-700 mt-8 pt-8 items-center justify-center flex-flow  gap-x-60 ">
+          <p className="text-gray-400 text-center">{t("footer.copyright")}</p>
+             <p className="text-gray-600 text-right ">
+            {" "}
+            Designed By: <Link href={"google.com"} target="_blank"> etegeTechs</Link>
+          </p>
+       {/* <div className="justify-self-end">
+           <p className="text-gray-400 text-right">
+            {" "}
+            Designed By:  h.wix.com" target="_blank"> etegeTech</a>
+          </p>
+       </div> */}
+
+          {/* <div className=" text-center">
           <p className="text-gray-400">{t("footer.copyright")}</p>
+        </div> */}
+          {/* <div className="text-right">
+        <p className="text-gray-400"> Designed By: <a href="etegeTech.wix.com"> etegeTech</a></p>
+      </div> */}
         </div>
       </div>
     </footer>

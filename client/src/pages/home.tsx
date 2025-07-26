@@ -5,6 +5,7 @@ import { PartnersCarousel } from "@/components/partners-carousel";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
 import {
   Building,
   Globe,

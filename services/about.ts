@@ -67,7 +67,7 @@ export const AboutItemFetch = async () => {
           
         }))
       : [],
-       why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
+      why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
       ? new_data.why_chose_MakMar_Card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
@@ -77,6 +77,7 @@ export const AboutItemFetch = async () => {
           
         }))
       : [],
-  };
+  }
+
   return aboutItems;
 };
