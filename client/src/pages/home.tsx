@@ -154,6 +154,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {HomePageItemsData && (
+        <StatsSection
+          statValues={HomePageItemsData.statsSection.map((item) => ({
+            label: item.label,
+            target: item.value,
+          }))}
+        />
+      )}
+      {/* 
       <StatsSection
         statValues={[
           { label: t("stats.clients"), target: 500 },
@@ -161,7 +171,7 @@ export default function Home() {
           { label: t("stats.partners"), target: 50 },
           { label: t("stats.experience"), target: 15 },
         ]}
-      />
+      /> */}
       <OurServices
         services={ServiceItemsData?.service_Card?.slice(0, 3) || []} // Ensure fallback to an empty array if data is undefined
         header={ServiceItemsData?.service_header || []} // Provide a default header structure
