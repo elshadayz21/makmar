@@ -158,11 +158,16 @@ export function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 items-center justify-center flex-flow  gap-x-60 ">
           <p className="text-gray-400 text-center">{t("footer.copyright")}</p>
-             <p className="text-gray-600 text-right ">
+          <p className="text-gray-600 text-right ">
             {" "}
-            Designed By: <Link href={"google.com"} target="_blank"> etegeTechs</Link>
+            Designed By:{" "}
+            {/* <Link href={"https://google.com"} target="_blank">
+              {" "}
+              etegeTechs
+            </Link> */}
+            Designed By: <a href="https://google.com" target="_blank" rel="noopener noreferrer">etegeTechs</a>
           </p>
-       {/* <div className="justify-self-end">
+          {/* <div className="justify-self-end">
            <p className="text-gray-400 text-right">
             {" "}
             Designed By:  h.wix.com" target="_blank"> etegeTech</a>
