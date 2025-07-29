@@ -25,7 +25,7 @@ interface ServicesCTA {
 
 interface service_feature_lists {
   id: number;
-  value: string;
+  value: string |   number;
 }
 interface Card {
   id: number;
@@ -60,9 +60,37 @@ interface socialMedia {
   // telegram: string;
   // youtube: string;
 }
+interface ImageFormat {
+  url: string;
+  width: number;
+  height: number;
+  name: string;
+}
+interface ImageData {
+  id: number;
+  name: string;
+  url: string;
+  alternativeText: string;
+  formats: {
+    thumbnail: ImageFormat;
+    large: ImageFormat;
+    medium: ImageFormat;
+    small: ImageFormat;
+    
+  };
+}
 
 interface Getting_There {
   reference: string;
+}
+
+interface navigation_logo {
+  image:string;
+}
+
+interface statsSection{
+  label: string;
+  value: string;
 }
 export interface AboutItems {
   data: {
@@ -92,9 +120,17 @@ export interface ContactUsItems {
     Getting_There: Getting_There[];
   };
 
-  // export interface HomePage{
-  //   data:{
-
-  //   }
-  // }
 }
+  export interface HomePage{
+    data:{
+      homePageHeader: PageHeader;
+      navigationLogo: ImageData;
+      headerLogo: ImageData;
+      About_section_Globe_Image: ImageData;
+      partners_slider_images: ImageData[];
+      statsSection: statsSection[];
+      homepage_cta: ServicesCTA;
+      
+    }
+  }
+
