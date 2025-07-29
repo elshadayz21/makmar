@@ -121,7 +121,7 @@ export interface ContactUsItems {
   };
 
 }
-  export interface HomePage{
+  export interface HomePageItems{
     data:{
       homePageHeader: PageHeader;
       navigationLogo: ImageData;

@@ -44,7 +44,7 @@ export const HomePageItemFetch = async () => {
           {
             id: new_data.Get_In_Touch_CTA.id || "",
             title: new_data.Get_In_Touch_CTA.title || "",
-            description: new_data.Global_Trading_Network.desc || "",
+            description: new_data.Get_In_Touch_CTA.desc || "",
             phone_number: new_data.Get_In_Touch_CTA.phone_number || "",
             cta_button: new_data.Get_In_Touch_CTA.cta_button
               ? {
@@ -58,7 +58,7 @@ export const HomePageItemFetch = async () => {
         ]
       : [],
     statsSection: Array.isArray(new_data?.statsSection)
-      ? new_data.vision_mission_card.map((stat: any) => ({
+      ? new_data.statsSection.map((stat: any) => ({
           id: stat.id || "",
           label: stat.label || "",
           value: stat.value || "",
@@ -92,7 +92,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.large?.url || "",
                         height:
                           new_data.header_logo?.formats?.large?.height || 0,
-                        width: new_data.header_logo?.formats?.large.width || 0,
+                        width: new_data.header_logo?.formats?.large?.width || 0,
                       }
                     : {},
                   medium: new_data.header_logo?.formats
@@ -101,7 +101,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.medium?.url || "",
                         height:
                           new_data.header_logo?.formats?.medium?.height || 0,
-                        width: new_data.header_logo?.formats?.medium.width || 0,
+                        width: new_data.header_logo?.formats?.medium?.width || 0,
                       }
                     : {},
                   small: new_data.header_logo?.formats
@@ -110,7 +110,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.small?.url || "",
                         height:
                           new_data.header_logo?.formats?.small?.height || 0,
-                        width: new_data.header_logo?.formats?.small.width || 0,
+                        width: new_data.header_logo?.formats?.small?.width || 0,
                       }
                     : {},
                 }
@@ -151,7 +151,7 @@ export const HomePageItemFetch = async () => {
                                 new_data.header_logo?.formats?.large?.height ||
                                 0,
                               width:
-                                new_data.header_logo?.formats?.large.width || 0,
+                                new_data.header_logo?.formats?.large?.width || 0,
                             }
                           : {},
                         medium: new_data.header_logo?.formats
@@ -166,7 +166,7 @@ export const HomePageItemFetch = async () => {
                                 new_data.header_logo?.formats?.medium?.height ||
                                 0,
                               width:
-                                new_data.header_logo?.formats?.medium.width ||
+                                new_data.header_logo?.formats?.medium?.width ||
                                 0,
                             }
                           : {},
@@ -178,7 +178,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.small?.url || "",
                         height:
                           new_data.header_logo?.formats?.small?.height || 0,
-                        width: new_data.header_logo?.formats?.small.width || 0,
+                        width: new_data.header_logo?.formats?.small?.width || 0,
                       }
                     : {},
                 }
@@ -212,7 +212,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.large?.url || "",
                         height:
                           new_data.header_logo?.formats?.large?.height || 0,
-                        width: new_data.header_logo?.formats?.large.width || 0,
+                        width: new_data.header_logo?.formats?.large?.width || 0,
                       }
                     : {},
                   medium: new_data.header_logo?.formats
@@ -221,7 +221,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.medium?.url || "",
                         height:
                           new_data.header_logo?.formats?.medium?.height || 0,
-                        width: new_data.header_logo?.formats?.medium.width || 0,
+                        width: new_data.header_logo?.formats?.medium?.width || 0,
                       }
                     : {},
                   small: new_data.header_logo?.formats
@@ -230,7 +230,7 @@ export const HomePageItemFetch = async () => {
                         url: new_data.header_logo?.formats?.small?.url || "",
                         height:
                           new_data.header_logo?.formats?.small?.height || 0,
-                        width: new_data.header_logo?.formats?.small.width || 0,
+                        width: new_data.header_logo?.formats?.small?.width || 0,
                       }
                     : {},
                 }
@@ -256,7 +256,7 @@ export const HomePageItemFetch = async () => {
                       name: new_data.header_logo?.formats?.large?.name || "",
                       url: new_data.header_logo?.formats?.large?.url || "",
                       height: new_data.header_logo?.formats?.large?.height || 0,
-                      width: new_data.header_logo?.formats?.large.width || 0,
+                      width: new_data.header_logo?.formats?.large?.width || 0,
                     }
                   : {},
                 medium: new_data.header_logo?.formats
@@ -265,7 +265,7 @@ export const HomePageItemFetch = async () => {
                       url: new_data.header_logo?.formats?.medium?.url || "",
                       height:
                         new_data.header_logo?.formats?.medium?.height || 0,
-                      width: new_data.header_logo?.formats?.medium.width || 0,
+                      width: new_data.header_logo?.formats?.medium?.width || 0,
                     }
                   : {},
                 small: new_data.header_logo?.formats
@@ -273,7 +273,7 @@ export const HomePageItemFetch = async () => {
                       name: new_data.header_logo?.formats?.small?.name || "",
                       url: new_data.header_logo?.formats?.small?.url || "",
                       height: new_data.header_logo?.formats?.small?.height || 0,
-                      width: new_data.header_logo?.formats?.small.width || 0,
+                      width: new_data.header_logo?.formats?.small?.width || 0,
                     }
                   : {},
               }

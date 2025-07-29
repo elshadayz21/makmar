@@ -7,6 +7,10 @@ interface StatItemProps {
   label: string;
 }
 
+interface StatsSectionProps {
+  statValues: StatItemProps[];
+}
+
 function StatItem({ target, label }: StatItemProps) {
   const { count, setIsVisible } = useCounterAnimation(target, 2000);
   const ref = useRef<HTMLDivElement>(null);
@@ -40,17 +44,30 @@ function StatItem({ target, label }: StatItemProps) {
   );
 }
 
-export function StatsSection() {
-  const { t } = useLanguage();
+// export function StatsSection() {
+//   const { t } = useLanguage();
 
+//   return (
+//     <section className="py-20 bg-makmar-gold">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+//           <StatItem target={500} label={t("stats.clients")} />
+//           <StatItem target={1000} label={t("stats.trades")} />
+//           <StatItem target={50} label={t("stats.partners")} />
+//           <StatItem target={15} label={t("stats.experience")} />
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+export function StatsSection({ statValues }: StatsSectionProps) {
   return (
     <section className="py-20 bg-makmar-gold">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <StatItem target={500} label={t("stats.clients")} />
-          <StatItem target={1000} label={t("stats.trades")} />
-          <StatItem target={50} label={t("stats.partners")} />
-          <StatItem target={15} label={t("stats.experience")} />
+          {statValues.map((stat, index) => (
+            <StatItem key={index} target={stat.target} label={stat.label} />
+          ))}
         </div>
       </div>
     </section>

@@ -3,6 +3,8 @@ import { Footer } from "@/components/footer";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import OurServices from "@/components/our-services";
+
 import { Link } from "wouter";
 import {
   Building,
@@ -140,82 +142,12 @@ export default function Services() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-36 pb-0 bg-gradient-to-br from-makmar-light to-white dark:from-makmar-dark dark:to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {ServiceItemsData &&
-            ServiceItemsData?.service_header?.map((header) => {
-              return (
-                <div className="text-center" key={header.id}>
-                  {/* {t("services.title")} */}
-
-                  <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                    {header.title}
-                  </h1>
-                  <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    {/* {t("services.subtitle")} */}
-                    {header.description}
-                  </p>
-                </div>
-              );
-            })}
-        </div>
-      </section>
-
       {/* Services Grid */}
-      <section className="py-20 bg-white dark:bg-makmar-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ServiceItemsData &&
-              ServiceItemsData?.service_Card?.map((card) => {
-                const IconComponent = card?.icon;
-                return (
-                  <Card
-                    key={card.id}
-                    className="bg-makmar-light dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    <CardContent className="p-8">
-                      <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mb-6">
-                        {/* <IconComponent className="text-white h-8 w-8" /> */}
-                      </div>
-                      <h3 className="text-xl font-semibold mb-4">
-                        {card?.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-6">
-                        {card?.desc}
-                      </p>
-                      <ul className="space-y-2">
-                        {Array.isArray(card?.list_values) &&
-                          card?.list_values.map((feature) => (
-                            <li
-                              key={feature.id}
-                              className="flex items-start text-sm text-gray-600 dark:text-gray-300"
-                            >
-                              <CheckCircle className="h-4 w-4 text-makmar-gold mr-2 mt-1 flex-shrink-0" />
-                              <div>
-                                <span className="font-medium">
-                                  {feature.values || "Default Feature"}
-                                </span>
-                                {/* {feature.description && (
-                                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    {feature.description}
-                                  </p>
-                                )} */}
-                                {/* <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    {feature?.values}
-                                  </p> */}
-                              </div>
-                            </li>
-                          ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-          </div>
-        </div>
-      </section>
-
+      {/* <OurServices /> */}
+      <OurServices
+        services={ServiceItemsData?.service_Card || []} // Ensure fallback to an empty array if data is undefined
+        header={ServiceItemsData?.service_header || []} // Provide a default header structure
+      />
       {/* Process Section */}
       <section className="py-20 bg-makmar-light dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -231,7 +163,7 @@ export default function Services() {
                     </span>
                   </h2>
                   <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                   {header.description}
+                    {header.description}
                   </p>
                 </div>
               );
@@ -240,27 +172,29 @@ export default function Services() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {ServiceItemsData &&
               ServiceItemsData?.service_process_card?.map((step, index) => {
-              const IconComponent = step.icon;
-              return (
-                <Card
-                  key={step.id}
-                  className="bg-white dark:bg-gray-800 shadow-lg"
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="w-12 h-12 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-4">
-                      {/* <IconComponent className="text-white h-6 w-6" /> */}
-                    </div>
-                    <div className="w-8 h-8 bg-makmar-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold">
-                      {index + 1}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
-                      {step.desc}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                const IconComponent = step.icon;
+                return (
+                  <Card
+                    key={step.id}
+                    className="bg-white dark:bg-gray-800 shadow-lg"
+                  >
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-4">
+                        {/* <IconComponent className="text-white h-6 w-6" /> */}
+                      </div>
+                      <div className="w-8 h-8 bg-makmar-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold">
+                        {index + 1}
+                      </div>
+                      <h3 className="text-lg font-semibold mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm">
+                        {step.desc}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
           </div>
         </div>
       </section>

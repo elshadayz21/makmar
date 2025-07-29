@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { StatsSection } from "@/components/stats-section";
@@ -5,7 +8,11 @@ import { PartnersCarousel } from "@/components/partners-carousel";
 import { useLanguage } from "@/components/language-provider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
+import OurServices from "@/components/our-services";
+import { ServiceItems } from "types/strapi-types";
+import { ServiceItemFetch } from "../../../services/service";
+import { HomePageItemFetch } from "../../../services/homepage";
+import { HomePageItems } from "types/strapi-types";
 import {
   Building,
   Globe,
@@ -17,7 +24,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { Footer } from "@/components/footer";
-
+import AboutMissionVision from "@/components/about";
 export default function Home() {
   const { t } = useLanguage();
 
@@ -54,16 +61,47 @@ export default function Home() {
     },
   ];
 
+  const [HomePageItemsData, setHomePageItemsData] = useState<HomePageItems>();
+  // Fetch footer items from the API
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const data = await HomePageItemFetch();
+      setHomePageItemsData(data);
+      // console.log("AboutItemsData", HomePageItemsData?.data?.aboutHeader?.title);
+    };
+
+    fetchMenuItems();
+  }, []);
+
+  console.log("about data items", HomePageItemsData);
+  console.log("Fetched About Items Data:", HomePageItemsData);
+
+  const [ServiceItemsData, setServiceItemsData] = useState<ServiceItems>();
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const data = await ServiceItemFetch();
+      console.log("Fetched ServiceItemsData", data);
+      setServiceItemsData(data);
+    };
+
+    fetchMenuItems();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
 
       {/* About Section */}
+
+      {/* <AboutMissionVision /> */}
+
       <section className="py-16 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+            <AboutMissionVision />
+            {/* <div className="space-y-8">
               <div className="space-y-4">
                 <h2 className="text-3xl sm:text-4xl font-bold">
                   {t("about.title")}
@@ -94,7 +132,7 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </div> */}
             <div className="hidden lg:block  relative">
               <div className="w-full h-80  from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center">
                 <img
@@ -116,58 +154,18 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <StatsSection />
-
-      {/* Services Section */}
-      <section className="py-20 bg-makmar-light dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              {t("services.title")}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t("services.subtitle")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.slice(0, 3).map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mb-6">
-                      <IconComponent className="text-white h-8 w-8" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              href="/services"
-              replace
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <Button className="bg-makmar-gold hover:bg-makmar-gold-dark text-white px-8 py-3 rounded-lg font-semibold">
-                View All Services
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <StatsSection
+        statValues={[
+          { label: t("stats.clients"), target: 500 },
+          { label: t("stats.trades"), target: 1000 },
+          { label: t("stats.partners"), target: 50 },
+          { label: t("stats.experience"), target: 15 },
+        ]}
+      />
+      <OurServices
+        services={ServiceItemsData?.service_Card?.slice(0, 3) || []} // Ensure fallback to an empty array if data is undefined
+        header={ServiceItemsData?.service_header || []} // Provide a default header structure
+      />
 
       <PartnersCarousel />
 
