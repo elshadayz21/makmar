@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Navigation } from "@/components/navigation";
+import { Navigation2 } from "@/components/navigation2";
 import { HeroSection } from "@/components/hero-section";
 import { StatsSection } from "@/components/stats-section";
 import { PartnersCarousel } from "@/components/partners-carousel";
@@ -114,7 +114,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation2  statValues={HomePageItemsData?.navigation_logo.map((image) => ({
+            id: image.id,
+            url: image.url,
+            alternativeText: image.alternativeText,
+          }))} />
       <HeroSection />
 
       {/* About Section */}
@@ -183,10 +187,10 @@ export default function Home() {
                   )
                 ) : (
                   <div className="text-center">
-                    <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
+                    {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-makmar-gold">
                       Global Trading Network
-                    </h3>
+                    </h3> */}
                   </div>
                 )}
 
@@ -260,23 +264,21 @@ export default function Home() {
         />
       )} */}
 
-{HomePageItemsData && (
-  <PartnersCarousel
-    statValues={HomePageItemsData.partners_slider_images.map((image) => ({
-      id: image.id,
-      url: image.url,
-      alternativeText: image.alternativeText,
-    }))}
-        header={HomePageItemsData?.partners_header || []} // Provide a default header structure
-
-  />
-)}
-
+      {HomePageItemsData && (
+        <PartnersCarousel
+          statValues={HomePageItemsData.partners_slider_images.map((image) => ({
+            id: image.id,
+            url: image.url,
+            alternativeText: image.alternativeText,
+          }))}
+          header={HomePageItemsData?.partners_header || []} // Provide a default header structure
+        />
+      )}
 
       {/* Contact Section */}
       <section className="py-20 bg-makmar-gold">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          {/* <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
               {t("contact.title")}
             </h2>
@@ -298,7 +300,39 @@ export default function Home() {
                 <span>{t("contact.phone")}</span>
               </div>
             </div>
-          </div>
+          </div> */}
+          {HomePageItemsData?.Get_In_Touch_CTA?.map((cta) => (
+            <div
+              key={cta?.id}
+              className="bg-makmar-gold rounded-2xl px-6 py-12 text-center"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
+                {cta.title}
+              </h2>
+              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                {cta.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link
+                  href={cta.cta_button?.link || "/contact"}
+                  replace
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                >
+                  <Button className="bg-white text-makmar-gold hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg">
+                    {cta.cta_button?.title || "Contact Us"}
+                  </Button>
+                </Link>
+                {cta.phone_number && (
+                  <div className="flex items-center text-white space-x-2">
+                    <Phone className="h-5 w-5" />
+                    <span>{cta.phone_number}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

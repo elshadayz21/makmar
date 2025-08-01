@@ -157,7 +157,7 @@ export function PartnersCarousel({ statValues, header }: StatsSectionProps) {
       scrollRef.current.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
     }
   }, [currentIndex]);
-  console.log("partner carsaul header,", header);
+
 
   return (
     <section className="py-20 bg-white dark:bg-makmar-dark">

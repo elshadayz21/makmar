@@ -1,11 +1,26 @@
 import { useLanguage } from "@/components/language-provider";
 import { Link } from "wouter";
+
+interface StatItemProps {
+  id: number;
+  url: string;
+  alternativeText: string;
+}
+
 interface LogoProps {
   showText?: boolean;
   className?: string;
+
+  url: string;
+  alternativeText: string;
 }
 
-export function Logo({ showText = true, className = "" }: LogoProps) {
+export function Logo2({
+  showText = true,
+  className = "",
+  url,
+  alternativeText,
+}: LogoProps) {
   const { language } = useLanguage();
 
   return (
@@ -18,9 +33,14 @@ export function Logo({ showText = true, className = "" }: LogoProps) {
           replace
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <img
-            src="/makmar-Web-logo-removebg-preview.png"
+          {/* <img
+            src="/public/makmar-Web-logo-removebg-preview.png"
             alt="MakMar Logo"
+            className=" justify-center"
+          /> */}
+         <img
+            src={url || "/public/makmar-Web-logo-removebg-preview.png"}
+            alt={alternativeText || "MakMar Logo"}
             className=" justify-center"
           />
         </Link>

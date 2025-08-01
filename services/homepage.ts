@@ -8,7 +8,7 @@ export const HomePageItemFetch = async () => {
   const res = await fetch(
     `${
      baseUrl
-    }/api/homepage?populate=partners_header&populate=header_logo&populate=navigation_bar_logo&populate=About_section_Globe_Image&populate=partners_slider_images&populate=statsSection&populate=Get_In_Touch_CTA`,
+    }/api/homepage?populate=partners_header&populate=header_logo&populate=navigation_logo&populate=About_section_Globe_Image&populate=partners_slider_images&populate=statsSection&populate=Get_In_Touch_CTA.cta_button`,
     {
       method: "GET",
       headers: {
@@ -66,9 +66,10 @@ console.log("✅ Homepage Service - DATABASE_URL:", env.DATABASE_URL);
       ? [processImageFormats(new_data.header_logo)]
       : [],
 
-    navigation_bar_logo: new_data?.navigation_bar_logo
-      ? [processImageFormats(new_data.navigation_bar_logo)]
+    navigation_logo: new_data?.navigation_logo
+      ? [processImageFormats(new_data.navigation_logo)]
       : [],
+    // navigation_bar_logo: processImageArray(new_data?.navigation_logo || []),
 
     About_section_Globe_Image: new_data?.About_section_Globe_Image
       ? [processImageFormats(new_data.About_section_Globe_Image)]
