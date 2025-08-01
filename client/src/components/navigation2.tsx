@@ -42,13 +42,14 @@ export function Navigation2({ statValues }: StatsSectionProps) {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-white/95 dark:bg-makmar-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <nav className="fixed w-full top-0 z-50 bg-white/95 dark:bg-gray-800 backdrop-blur-md border-b border-gray-200 dark:border-gray-900">
+       {/* <nav className="fixed w-full top-0 z-50 bg-white/95 dark:bg-dark/95backdrop-blur-md border-b border-gray-200 dark:border-gray-900"> */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {statValues &&
             statValues.map((header, index) => {
               return (
-                <div>
+                <div key={index}>
                   <Logo2 url={header.url || " "} alternativeText={header.alternativeText|| " "} />
                 </div>
               );

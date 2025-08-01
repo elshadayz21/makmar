@@ -40,19 +40,26 @@ export function HeroSection({
                 headerContent.map((header, index) => {
                   return (
                     <>
+                      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                {/* <span className="text-makmar-gold">Excellence</span> */}
+                <span className="text-makmar-gold">{header.title.split(" ").slice(0,1).join(" ")} {" "}</span>
+
+                 {/* in */}
+                 {header.title.split(" ").slice(1,2).join(" ")}
+                <br />
+                {/* Global Trading */}
+                {header.title.split(" ").slice(2,4).join(" ")}
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-lg">
+                {/* {t("hero.subtitle")} */}
+                {header.description}
+              </p>
                       {/* <span>{header.title}</span>{" "}
                       <span>{header.description}</span> */}
                     </>
                   );
                 })}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-makmar-gold">Excellence</span> in
-                <br />
-                Global Trading
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-lg">
-                {t("hero.subtitle")}
-              </p>
+            
             </div>
             {/* <div className="flex flex-col sm:flex-row gap-4">
               <Link
