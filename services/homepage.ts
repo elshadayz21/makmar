@@ -8,7 +8,7 @@ export const HomePageItemFetch = async () => {
   const res = await fetch(
     `${
      baseUrl
-    }/api/homepage?populate=partners_header&populate=header_logo&populate=navigation_logo&populate=About_section_Globe_Image&populate=partners_slider_images&populate=statsSection&populate=Get_In_Touch_CTA.cta_button`,
+    }/api/homepage?populate=partners_header.CTA_on_homepage_header&populate=header_logo&populate=navigation_logo&populate=About_section_Globe_Image&populate=partners_slider_images&populate=statsSection&populate=Get_In_Touch_CTA.cta_button`,
     {
       method: "GET",
       headers: {
@@ -27,15 +27,23 @@ console.log("✅ Homepage Service - DATABASE_URL:", env.DATABASE_URL);
   console.log("new about items data", new_data);
 
   const homepageItems = {
-    partners_header: new_data?.partners_header
-      ? [
-          {
-            id: new_data.partners_header.id || "",
-            title: new_data.partners_header.page_title || "",
-            description: new_data.partners_header.page_desc || "",
-          },
-        ]
-      : [],
+  partners_header: new_data?.partners_header
+  ? [
+      {
+        id: new_data.partners_header.id || "",
+        title: new_data.partners_header.page_title || "",
+        description: new_data.partners_header.page_desc || "",
+        CTA_on_homepage_header:
+          new_data.partners_header.CTA_on_homepage_header?.map((cta: any) => ({
+            id: cta.id || "",
+            title: cta.title || "",
+            link: cta.link || "#",
+            icon: cta.icon || "",
+          })) || [],
+      },
+    ]
+  : [],
+
     Get_In_Touch_CTA: new_data?.Get_In_Touch_CTA
       ? [
           {

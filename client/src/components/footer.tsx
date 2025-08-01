@@ -46,23 +46,24 @@ export function Footer() {
                 alt="MakMar Logo"
                 className=" justify-center"
               /> */}
-                 {FooterItemsData?.footer_logo && FooterItemsData.footer_logo.length > 0 ? (
-                                FooterItemsData.footer_logo.map((image: any, index: number) => (
-                                  <img
-                                    key={image.id || index}
-                                    src={image.url}
-                                    alt={image.alternativeText || "Logo"}
-                                    className="w-full h-full object-cover rounded-2xl"
-                                  />
-                                ))
-                              ) : (
-                                <div className="text-center">
-                                  {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" /> */}
-                                  <h3 className="text-xl font-bold text-makmar-gold">
-                                   MakMak Trading PLC
-                                  </h3>
-                                </div>
-                              )}
+              {FooterItemsData?.footer_logo &&
+              FooterItemsData.footer_logo.length > 0 ? (
+                FooterItemsData.footer_logo.map((image: any, index: number) => (
+                  <img
+                    key={image.id || index}
+                    src={image.url}
+                    alt={image.alternativeText || "Logo"}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                ))
+              ) : (
+                <div className="text-center">
+                  {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" /> */}
+                  <h3 className="text-xl font-bold text-makmar-gold">
+                    MakMak Trading PLC
+                  </h3>
+                </div>
+              )}
             </div>
             <p className="text-gray-300 mb-4">
               {/* {t("footer.description")} */}
@@ -78,7 +79,7 @@ export function Footer() {
                   {item?.small_about_section_in_footer}
                 </span>
               
-))} */}
+              ))} */}
             </p>
             {/* <div className="flex space-x-4">
               <a

@@ -111,15 +111,32 @@ export default function Home() {
     fetchMenuItems();
   }, []);
   console.log("HomePageItemsData", HomePageItemsData);
-
+  console.log("CTA_on_homepage_header:", HomePageItemsData?.partners_header);
   return (
     <div className="min-h-screen bg-background">
-      <Navigation2  statValues={HomePageItemsData?.navigation_logo.map((image) => ({
-            id: image.id,
-            url: image.url,
-            alternativeText: image.alternativeText,
-          }))} />
-      <HeroSection />
+      <Navigation2
+        statValues={HomePageItemsData?.navigation_logo.map((image) => ({
+          id: image.id,
+          url: image.url,
+          alternativeText: image.alternativeText,
+        }))}
+      />
+      <HeroSection
+        headerImageValues={HomePageItemsData?.header_logo.map((image) => ({
+          id: image.id,
+          url: image.url,
+          alternativeText: image.alternativeText,
+        }))}
+        headerContent={HomePageItemsData?.partners_header || []}
+     headerCTAvalues={
+    HomePageItemsData?.partners_header?.[0]?.CTA_on_homepage_header?.map((cta) => ({
+      id: cta.id,
+      title: cta.title,
+      link: cta.link,
+      icon: cta.icon,
+    })) || []
+  }
+      />
 
       {/* About Section */}
 
