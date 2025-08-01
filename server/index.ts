@@ -24,7 +24,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: "http://localhost:3000", // or your frontend URL
+  origin: "http://localhost:5011", // or your frontend URL
   credentials: true,
 }));
 

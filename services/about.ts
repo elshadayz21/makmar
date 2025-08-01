@@ -1,12 +1,11 @@
 import { AboutItems } from "types/strapi-types";
+import { env } from "@shared/env";
 import "dotenv";
-// import axios from "axios";
 
 export const AboutItemFetch = async () => {
+  const baseUrl = env.getStrapiUrl();
   const res = await fetch(
-    `${
-      import.meta.env.VITE_STRAPI_IP_DEV
-    }/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card&populate=Global_Trading_Network&populate=why_chose_MakMar_Card`,
+    `${baseUrl}/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card&populate=Global_Trading_Network&populate=why_chose_MakMar_Card`,
     {
       method: "GET",
       headers: {
@@ -19,6 +18,9 @@ export const AboutItemFetch = async () => {
 
   const new_data = data.data;
 
+  console.log("✅ About Service - Base URL:", baseUrl);
+  console.log("✅ About Service - NODE_ENV:", env.NODE_ENV);
+  console.log("✅ About Service - STRAPI_PROD:", env.STRAPI_IP_PROD);
   console.log("new about items data", new_data);
 
   //   const data = res.data;

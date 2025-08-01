@@ -35,7 +35,7 @@ function StatItem({ target, label }: StatItemProps) {
 
     return () => observer.disconnect();
   }, [setIsVisible]);
-
+// console.log("count", count);
   return (
     <div ref={ref} className="text-center text-white">
       <div className="text-4xl font-bold mb-2">{count}</div>

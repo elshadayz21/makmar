@@ -1,11 +1,12 @@
 import { ServiceItems } from "../types/strapi-types";
+import { env } from "@shared/env";
 import "dotenv";
-// import axios from "axios";
 
 export const ServiceItemFetch = async () => {
+     const baseUrl = env.getStrapiUrl();
   const res = await fetch(
     `${
-      import.meta.env.VITE_STRAPI_IP_DEV
+     baseUrl
     }/api/service?populate=service_header&populate=services_CTA.cta_button&populate=services_Card.list_values&populate=service_Process_Header&populate=service_process_card `,
     {
       method: "GET",

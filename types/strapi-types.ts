@@ -1,3 +1,5 @@
+import { intersectAll } from "drizzle-orm/mysql-core";
+
 interface PageHeader {
   id: number;
   title: string;
@@ -51,9 +53,13 @@ interface contactInfo {
   openHours: string;
 }
 
+interface about_section_in_footer{
+  footer_desc: string;
+}
 interface socialMedia {
   id: number;
   socialLink: string;
+  title: string;
   // instagram: string;
   // twitter: string;
   // linkedin: string;
@@ -80,12 +86,13 @@ interface ImageData {
   };
 }
 
-interface Getting_There {
-  reference: string;
+interface footerLinks{
+  title:string;
+  link: socialMedia[]
 }
 
-interface navigation_logo {
-  image:string;
+interface Getting_There {
+  reference: string;
 }
 
 interface statsSection{
@@ -132,5 +139,19 @@ export interface ContactUsItems {
       homepage_cta: ServicesCTA;
       
     }
+
+  }
+  export interface FooterItems {
+    data : {
+      about_section_in_footer: about_section_in_footer;
+      // small_about_section_in_footer:string[];
+      footer_links: footerLinks[];
+      footer_logo: ImageData;
+      rights_owned_by: about_section_in_footer;
+      // rights_reserved_by: string[]
+      // designed_by: small_about_section_in_footer
+      website_is_designed_by: socialMedia;
+    }
+
   }
 

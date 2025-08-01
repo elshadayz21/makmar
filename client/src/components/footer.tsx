@@ -1,9 +1,32 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+
 import { Link } from "wouter";
+
 import { useLanguage } from "@/components/language-provider";
 import { Building, Globe, Users, Mail, Phone } from "lucide-react";
-
+import { FooterItemFetch } from "../../../services/footer";
+import { FooterItems } from "types/strapi-types";
 export function Footer() {
   const { t } = useLanguage();
+
+  const [FooterItemsData, setFooterItemsData] = useState<FooterItems>();
+
+  // Fetch footer items from the API
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const data = await FooterItemFetch();
+      setFooterItemsData(data);
+      console.log("useEffect Footer Items Data", data);
+    };
+
+    fetchMenuItems();
+  }, []);
+
+  console.log("footer data items", FooterItemsData?.data?.footer_logo);
+  console.log("Fetched footer Items Data:", FooterItemsData);
+  // FooterItemsData
 
   return (
     <footer className="bg-makmar-dark text-white py-12">
@@ -18,14 +41,46 @@ export function Footer() {
                 <h3 className="text-xl font-bold text-makmar-gold">MAKMAR</h3>
                 <p className="text-sm text-gray-300">TRADING PLC</p>
               </div> */}
-              <img
+              {/* <img
                 src="/public/makmar-Web-logo-removebg-preview.png"
                 alt="MakMar Logo"
                 className=" justify-center"
-              />
+              /> */}
+                 {FooterItemsData?.footer_logo && FooterItemsData.footer_logo.length > 0 ? (
+                                FooterItemsData.footer_logo.map((image: any, index: number) => (
+                                  <img
+                                    key={image.id || index}
+                                    src={image.url}
+                                    alt={image.alternativeText || "Logo"}
+                                    className="w-full h-full object-cover rounded-2xl"
+                                  />
+                                ))
+                              ) : (
+                                <div className="text-center">
+                                  {/* <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" /> */}
+                                  <h3 className="text-xl font-bold text-makmar-gold">
+                                   MakMak Trading PLC
+                                  </h3>
+                                </div>
+                              )}
             </div>
-            <p className="text-gray-300 mb-4">{t("footer.description")}</p>
-            <div className="flex space-x-4">
+            <p className="text-gray-300 mb-4">
+              {/* {t("footer.description")} */}
+              {FooterItemsData &&
+                FooterItemsData?.about_section_in_footer?.map(
+                  (footer, index) => {
+                    return <span key={index}>{footer?.title}</span>;
+                  }
+                )}
+
+              {/* {FooterItemsData && FooterItemsData?.data?.small_about_section_in_footer.map((item, index) => (
+                <span key={index}>
+                  {item?.small_about_section_in_footer}
+                </span>
+              
+))} */}
+            </p>
+            {/* <div className="flex space-x-4">
               <a
                 href="#"
                 className="text-gray-400 hover:text-makmar-gold transition-colors"
@@ -56,27 +111,36 @@ export function Footer() {
               >
                 <Phone className="h-5 w-5" />
               </a>
-            </div>
+            </div> */}
           </div>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-makmar-gold">
-              {t("footer.quickLinks")}
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-makmar-gold transition-colors"
-                  replace
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                >
-                  {t("nav.home")}
-                </Link>
-              </li>
-              <li>
+          {FooterItemsData &&
+            FooterItemsData.footer_links?.map((item) => {
+              return (
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 text-makmar-gold">
+                    {/* {t("footer.quickLinks")} */}
+                    {item.title}
+                  </h4>
+                  <ul className="space-y-2">
+                    {Array.isArray(item.link) &&
+                      item.link.map((links) => (
+                        <li>
+                          <Link
+                            href={links.title}
+                            className="text-gray-300 hover:text-makmar-gold transition-colors"
+                            replace
+                            onClick={() =>
+                              window.scrollTo({ top: 0, behavior: "smooth" })
+                            }
+                          >
+                            {/* {t("nav.home")} */}
+                            {links.socialLink}
+                          </Link>
+                        </li>
+                      ))}
+
+                    {/* <li>
                 <Link
                   href="/about"
                   className="text-gray-300 hover:text-makmar-gold transition-colors"
@@ -111,11 +175,13 @@ export function Footer() {
                 >
                   {t("nav.contact")}
                 </Link>
-              </li>
-            </ul>
-          </div>
+              </li> */}
+                  </ul>
+                </div>
+              );
+            })}
 
-          <div>
+          {/* <div>
             <h4 className="text-lg font-semibold mb-4 text-makmar-gold">
               {t("services.title")}
             </h4>
@@ -153,19 +219,44 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 items-center justify-center flex-flow  gap-x-60 ">
-          <p className="text-gray-400 text-center">{t("footer.copyright")}</p>
+          {FooterItemsData &&
+            FooterItemsData?.rights_owned_by?.map((link) => {
+              return (
+                <p className="text-gray-400 text-center">
+                  {/* {t("footer.copyright")}
+                   */}
+                  © {new Date().getFullYear()} {link.title}
+                </p>
+              );
+            })}
           <p className="text-gray-600 text-right ">
             {" "}
-            Designed By:{" "}
             {/* <Link href={"https://google.com"} target="_blank">
               {" "}
               etegeTechs
             </Link> */}
-            Designed By: <a href="https://google.com" target="_blank" rel="noopener noreferrer">etegeTechs</a>
+            {FooterItemsData &&
+              FooterItemsData?.website_is_designed_by?.map((link) => {
+                return (
+                  <span key={link.id}>
+                    {/* <span key={index}>
+                  {footer?.title}
+                </span> */}
+                    Designed By:{" "}
+                    <a
+                      href={link.socialLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.title}
+                    </a>
+                  </span>
+                );
+              })}
           </p>
           {/* <div className="justify-self-end">
            <p className="text-gray-400 text-right">

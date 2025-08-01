@@ -25,6 +25,8 @@ import {
 import { Link } from "wouter";
 import { Footer } from "@/components/footer";
 import AboutMissionVision from "@/components/about";
+import { AboutItemFetch } from "../../../services/about";
+import { AboutItems } from "types/strapi-types";
 export default function Home() {
   const { t } = useLanguage();
 
@@ -62,15 +64,36 @@ export default function Home() {
   ];
 
   const [HomePageItemsData, setHomePageItemsData] = useState<HomePageItems>();
+  const [AboutItemsData, setAboutItemsData] = useState<AboutItems>();
+
+  // // Fetch footer items from the API
+  // useEffect(() => {
+  //   const fetchMenuItems = async () => {
+  //     const data = await AboutItemFetch();
+  //     setAboutItemsData(data);
+  //     console.log("AboutItemsData", AboutItemsData?.data?.aboutHeader?.title);
+  //   };
+
+  //   fetchMenuItems();
+  // }, []);
+
+  // console.log("about data items", AboutItemsData);
+  // console.log("Fetched About Items Data:", AboutItemsData);
   // Fetch footer items from the API
   useEffect(() => {
-    const fetchMenuItems = async () => {
-      const data = await HomePageItemFetch();
-      setHomePageItemsData(data);
+    const fetchHomepageItems = async () => {
+      const homepage_data = await HomePageItemFetch();
+      setHomePageItemsData(homepage_data);
       // console.log("AboutItemsData", HomePageItemsData?.data?.aboutHeader?.title);
     };
 
-    fetchMenuItems();
+    const fetchAboutItems = async () => {
+      const about_data = await AboutItemFetch();
+      setAboutItemsData(about_data);
+    };
+
+    fetchHomepageItems();
+    fetchAboutItems();
   }, []);
 
   console.log("about data items", HomePageItemsData);
@@ -87,6 +110,7 @@ export default function Home() {
 
     fetchMenuItems();
   }, []);
+  console.log("HomePageItemsData", HomePageItemsData);
 
   return (
     <div className="min-h-screen bg-background">
@@ -100,46 +124,81 @@ export default function Home() {
       <section className="py-16 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <AboutMissionVision />
-            {/* <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl sm:text-4xl font-bold">
-                  {t("about.title")}
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  {t("about.description")}
-                </p>
-              </div>
+            {/* <AboutMissionVision /> */}
+
+            <div className="space-y-8">
+              {AboutItemsData &&
+                AboutItemsData?.about_header?.map((header) => {
+                  return (
+                    <div className="space-y-4">
+                      <h2 className="text-3xl sm:text-4xl font-bold">
+                        {/* {t("about.title")} */}
+                        {header.title}
+                      </h2>
+                      <p className="text-lg text-gray-600 dark:text-gray-300">
+                        {/* {t("about.description")} */}
+                        {header.description}
+                      </p>
+                    </div>
+                  );
+                })}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <Card className="bg-makmar-light dark:bg-gray-800">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold mb-2 text-makmar-gold">
-                      {t("about.mission")}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {t("about.missionText")}
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-makmar-light dark:bg-gray-800">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold mb-2 text-makmar-gold">
-                      {t("about.vision")}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {t("about.visionText")}
-                    </p>
-                  </CardContent>
-                </Card>
+                {AboutItemsData &&
+                  AboutItemsData?.vision_mission_card?.map((card) => {
+                    return (
+                      <Card className="bg-makmar-light dark:bg-gray-800">
+                        <CardContent className="p-6">
+                          <h3 className="text-lg font-semibold mb-2 text-makmar-gold">
+                            {/* {t("about.mission")} */}
+                            {card.title}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300">
+                            {/* {t("about.missionText")} */}
+                            {card.desc}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}{" "}
               </div>
-            </div> */}
+            </div>
             <div className="hidden lg:block  relative">
               <div className="w-full h-80  from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center">
-                <img
-                  src="/public/global-trading-service.gif"
+                {/* <img
+                  src="/global-trading-service.gif"
                   alt="MakMar Logo"
                   className="w-full h-full justify-center mb-6 rounded-2xl"
-                />
+                /> */}
+                {HomePageItemsData?.About_section_Globe_Image &&
+                HomePageItemsData.About_section_Globe_Image.length > 0 ? (
+                  HomePageItemsData.About_section_Globe_Image.map(
+                    (image, index) => (
+                      <img
+                        key={image.id || index}
+                        src={image.url}
+                        alt={image.alternativeText || "About Globe Image"}
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    )
+                  )
+                ) : (
+                  <div className="text-center">
+                    <Globe className="h-16 w-16 text-makmar-gold mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-makmar-gold">
+                      Global Trading Network
+                    </h3>
+                  </div>
+                )}
+
+                {/* 
+                  import globalTradingGif from '@/assets/global-trading-service.gif';
+
+                  <img
+                    src={globalTradingGif}
+                    alt="MakMar Logo"
+                    className="w-full h-full justify-center mb-7 rounded-2xl"
+                  /> */}
+
                 {/* <img src="/public/trade-world.gif" alt="MakMar Logo" className="w-full h-full justify-center mb-6 rounded-2xl" /> */}
 
                 <div className="text-center">
@@ -177,7 +236,42 @@ export default function Home() {
         header={ServiceItemsData?.service_header || []} // Provide a default header structure
       />
 
-      <PartnersCarousel />
+      {/* <PartnersCarousel /> */}
+      {/* <PartnersCarousel
+        // title={new_data.partners_header.title}
+        // subtitle={new_data.partners_header.subtitle}
+        // images={new_data.partners_slider_images.map((image: any) => ({
+        //   id: image.id || "",
+        //   url: image.url || "",
+        // }))}
+          image={HomePageItemsData?.partners_slider_images || []}
+          header={HomePageItemsData?.partners_header || []}
+      /> */}
+
+      {/* {HomePageItemsData && (
+        <PartnersCarousel
+          statValues={HomePageItemsData.partners_slider_images.map((image) => ({
+             key=image.id 
+                        src=image.url
+                        alt=image.alternativeText
+          }))}
+          header={HomePageItemsData?.partners_header || []}
+
+        />
+      )} */}
+
+{HomePageItemsData && (
+  <PartnersCarousel
+    statValues={HomePageItemsData.partners_slider_images.map((image) => ({
+      id: image.id,
+      url: image.url,
+      alternativeText: image.alternativeText,
+    }))}
+        header={HomePageItemsData?.partners_header || []} // Provide a default header structure
+
+  />
+)}
+
 
       {/* Contact Section */}
       <section className="py-20 bg-makmar-gold">

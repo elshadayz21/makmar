@@ -139,5 +139,5 @@ export const translations = {
   },
 };
 
-export type Language = keyof typeof translations;
-export type TranslationKey = keyof typeof translations.en;
+export type Language = keyof typeof translations; // Type for supported languages
+export type TranslationKey = keyof typeof translations.en;  // Type for translation keys 

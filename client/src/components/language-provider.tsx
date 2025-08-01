@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { translations, type Language } from "@/lib/i18n";
+import { translations, type Language } from "@/lib/i18n"; //type language because we are using it in the context
 
 interface LanguageContextType {
   language: Language;
@@ -7,9 +7,9 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined); // Create a context for language
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children }: { children: React.ReactNode }) { //accepts any nested components that consume the context
   const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
