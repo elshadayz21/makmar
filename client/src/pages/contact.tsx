@@ -323,13 +323,13 @@ export default function Contact() {
                       <>
                           <a
                             key={index}
-                            href={link.href}
+                            href={link.socialLink}
                             className="w-10 h-10 bg-makmar-gold rounded-lg flex items-center justify-center text-white hover:bg-makmar-gold-dark transition-colors"
-                          >
+                         target="_blank" >
                             {/* <IconComponent className="h-5 w-5" /> */}
                             <img 
-                              src={link.icon}
-                              alt={link.title}
+                              src={link?.icon.url}
+                              alt={link?.icon.alternativeText}
                               className="w-6 h-6" />
                           </a>
                       </>

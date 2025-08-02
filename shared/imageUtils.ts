@@ -31,7 +31,7 @@ export function getStrapiImageUrl(imageUrl: string): string {
 export function processImageFormats(imageData: any, baseUrl?: string): any {
   if (!imageData) return null;
   
-  console.log("🔧 Processing image data:", { imageData });
+  console.log("🔧 Processing image array data:", { imageData });
   
   const strapiBaseUrl = baseUrl || env.getStrapiUrl();
   

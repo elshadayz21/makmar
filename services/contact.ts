@@ -57,16 +57,16 @@ export const ContactUsItemFetch = async () => {
         ]
       : [],
 
-    socialLink: Array.isArray(new_data?.socialLink)
-      ? new_data.socialLink.map((card: any) => ({
-          id: card.id || "",
-          title: card.title || "",
-          socialLink: card.socialLink || "",
-          icon: card?.icon
-             ? [processImageFormats(card?.icon)]
-             : []
-        }))
-      : [],
+ socialLink: Array.isArray(new_data?.socialLink)
+  ? new_data.socialLink.map((card: any) => ({
+      id: card.id || "",
+      title: card.title || "",
+      socialLink: card.socialLink || "",
+      icon: Array.isArray(card?.icon)
+        ? card.icon.map((icon: any) => processImageFormats(icon))
+        : processImageFormats(card?.icon),
+    }))
+  : [],
     Getting_There: Array.isArray(new_data?.Getting_There)
      ? new_data.Getting_There.map((card: any) =>
        ({id: card.id || "", reference: card.reference || ""})) : [],
