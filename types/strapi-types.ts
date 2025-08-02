@@ -60,6 +60,7 @@ interface socialMedia {
   id: number;
   socialLink: string;
   title: string;
+  icon:string;
   // instagram: string;
   // twitter: string;
   // linkedin: string;

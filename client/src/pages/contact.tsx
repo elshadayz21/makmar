@@ -320,13 +320,19 @@ export default function Contact() {
                     {ContactItemsData &&
                       ContactItemsData?.socialLink.map((link, index) => {
                         return (
+                      <>
                           <a
                             key={index}
                             href={link.href}
                             className="w-10 h-10 bg-makmar-gold rounded-lg flex items-center justify-center text-white hover:bg-makmar-gold-dark transition-colors"
                           >
                             {/* <IconComponent className="h-5 w-5" /> */}
+                            <img 
+                              src={link.icon}
+                              alt={link.title}
+                              className="w-6 h-6" />
                           </a>
+                      </>
                         );
                       })}
                   </div>

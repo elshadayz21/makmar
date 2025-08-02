@@ -1,10 +1,10 @@
 import { env } from "@shared/env";
 import "dotenv";
-
+import { processImageFormats, processImageArray } from "@shared/imageUtils";
 export const ContactUsItemFetch = async () => {
    const baseUrl = env.getStrapiUrl();
   const res = await fetch(
-    `${baseUrl}/api/contact-us?populate=contactHeader&populate=contactInfo&populate=socialLink&populate=findUsMap&populate=Getting_There`,
+    `${baseUrl}/api/contact-us?populate=contactHeader&populate=contactInfo&populate=socialLink.icon&populate=findUsMap&populate=Getting_There`,
     {
       method: "GET",
       headers: {
@@ -17,12 +17,7 @@ export const ContactUsItemFetch = async () => {
 
   const new_data = data.data;
 
-  console.log("✅ Contact Service - Base URL:", baseUrl);
-  console.log("✅ Contact Service - NODE_ENV:", env.NODE_ENV);
-  console.log("✅ Contact Service - STRAPI_PROD:", env.STRAPI_IP_PROD);
-  console.log("new contact items data", new_data);
 
-  //   const data = res.data;
 
   const contactItems = {
     //   about_header: data?.about_page_header?.map((header) => ({
@@ -67,6 +62,9 @@ export const ContactUsItemFetch = async () => {
           id: card.id || "",
           title: card.title || "",
           socialLink: card.socialLink || "",
+          icon: card?.icon
+             ? [processImageFormats(card?.icon)]
+             : []
         }))
       : [],
     Getting_There: Array.isArray(new_data?.Getting_There)
@@ -74,5 +72,7 @@ export const ContactUsItemFetch = async () => {
        ({id: card.id || "", reference: card.reference || ""})) : [],
 
     }
+  console.log("✅ Contact Service -socialLink:", contactItems?.socialLink);
+
   return contactItems;
 };
