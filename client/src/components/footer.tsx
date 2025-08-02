@@ -128,7 +128,7 @@ export function Footer() {
                       item.link.map((links) => (
                         <li>
                           <Link
-                            href={links.title}
+                            href={links.socialLink}
                             className="text-gray-300 hover:text-makmar-gold transition-colors"
                             replace
                             onClick={() =>
@@ -136,7 +136,7 @@ export function Footer() {
                             }
                           >
                             {/* {t("nav.home")} */}
-                            {links.socialLink}
+                            {links.title}
                           </Link>
                         </li>
                       ))}
