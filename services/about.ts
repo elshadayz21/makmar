@@ -5,7 +5,7 @@ import "dotenv";
 export const AboutItemFetch = async () => {
   const baseUrl = env.getStrapiUrl();
   const res = await fetch(
-    `${baseUrl}/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card&populate=Global_Trading_Network&populate=why_chose_MakMar_Card`,
+    `${baseUrl}/api/about?populate=about_page_header&populate=why_MakMar&populate=vision_mission_card.icon&populate=Global_Trading_Network.icon&populate=why_chose_MakMar_Card.icon`,
     {
       method: "GET",
       headers: {
