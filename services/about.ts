@@ -88,7 +88,7 @@ export const AboutItemFetch = async () => {
           title: card.title || "",
           why_chose_MakMar_Card: card.why_chose_MakMar_Card || "",
           icon: Array.isArray(card?.icon)
-            ? card.icon.map((icon: any) => processImageFormats(icon))
+            ? card.icon?.map((icon: any) => processImageFormats(icon))
             : processImageFormats(card?.icon),
           desc: card.desc || "",
           step: card.step || "",

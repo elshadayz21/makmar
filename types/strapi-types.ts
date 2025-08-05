@@ -43,7 +43,7 @@ interface serviceProcessCard {
   title: string;
   desc: string;
   step: number;
-  icon: string;
+   icon:ImageData | ImageData[];
 }
 
 interface contactInfo {

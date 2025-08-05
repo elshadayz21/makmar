@@ -1,13 +1,12 @@
 import { ServiceItems } from "../types/strapi-types";
 import { env } from "@shared/env";
+import { processImageFormats } from "@shared/imageUtils";
 import "dotenv";
 
 export const ServiceItemFetch = async () => {
-     const baseUrl = env.getStrapiUrl();
+  const baseUrl = env.getStrapiUrl();
   const res = await fetch(
-    `${
-     baseUrl
-    }/api/service?populate=service_header&populate=services_CTA.cta_button&populate=services_Card.list_values&populate=service_Process_Header&populate=service_process_card `,
+    `${baseUrl}/api/service?populate=service_header&populate=services_CTA.cta_button&populate=services_Card.list_values&populate=services_Card.icon&populate=service_Process_Header&populate=service_process_card.icon`,
     {
       method: "GET",
       headers: {
@@ -59,12 +58,28 @@ export const ServiceItemFetch = async () => {
           },
         ]
       : [],
+    // service_Card: Array.isArray(new_data?.services_Card)
+    //   ? new_data.services_Card.map((card: any) => ({
+    //       id: card.id || "",
+    //       title: card.title || "",
+    // icon: card.icon || "",
+    // desc: card.desc || "",
+    // list_values: Array.isArray(card.list_values)
+    //   ? card.list_values.map((item: any) => ({
+    //       id: item.id || "",
+    //       values: item.values || "",
+    //     }))
+    //   : [],
+    //     }))
+    //   : [],
     service_Card: Array.isArray(new_data?.services_Card)
       ? new_data.services_Card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
-          icon: card.icon || "",
           desc: card.desc || "",
+          icon: Array.isArray(card?.icon)
+            ? card.icon.map((icon: any) => processImageFormats(icon))
+            : processImageFormats(card?.icon),
           list_values: Array.isArray(card.list_values)
             ? card.list_values.map((item: any) => ({
                 id: item.id || "",
@@ -73,13 +88,24 @@ export const ServiceItemFetch = async () => {
             : [],
         }))
       : [],
+    // service_process_card: Array.isArray(new_data?.service_process_card)
+    //   ? new_data.service_process_card.map((card: any) => ({
+    //       id: card.id || "",
+    //       title: card.title || "",
+    //       icon: card.icon || "",
+    //       desc: card.desc || "",
+
+    //       step: card.step || "",
+    //     }))
+    //   : [],
     service_process_card: Array.isArray(new_data?.service_process_card)
       ? new_data.service_process_card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
-          icon: card.icon || "",
+          icon: Array.isArray(card?.icon)
+            ? card.icon.map((icon: any) => processImageFormats(icon))
+            : processImageFormats(card?.icon),
           desc: card.desc || "",
-
           step: card.step || "",
         }))
       : [],

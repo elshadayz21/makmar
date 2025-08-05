@@ -172,7 +172,9 @@ export default function Services() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {ServiceItemsData &&
               ServiceItemsData?.service_process_card?.map((step, index) => {
-                const IconComponent = step.icon;
+                // const IconComponent = step.icon;
+                
+             
                 return (
                   <Card
                     key={step.id}
@@ -181,6 +183,12 @@ export default function Services() {
                     <CardContent className="p-6 text-center">
                       <div className="w-12 h-12 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-4">
                         {/* <IconComponent className="text-white h-6 w-6" /> */}
+                           <img
+                        key={index}
+                        src={step?.icon?.url}
+                        alt={step?.icon?.alternativeText}
+                        className="text-white h-16 w-16"
+                      />
                       </div>
                       <div className="w-8 h-8 bg-makmar-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold">
                         {index + 1}

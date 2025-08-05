@@ -328,8 +328,8 @@ export default function Contact() {
                          target="_blank" >
                             {/* <IconComponent className="h-5 w-5" /> */}
                             <img 
-                              src={link?.icon.url}
-                              alt={link?.icon.alternativeText}
+                              src={link?.icon?.url}
+                              alt={link?.icon?.alternativeText}
                               className="w-6 h-6" />
                           </a>
                       </>

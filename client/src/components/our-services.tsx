@@ -82,10 +82,11 @@ import React, { useState, useEffect } from "react";
 //     </>
 //   );
 // }
+interface ImageData { url: string; alternativeText: string };
 interface OurServicesProps {
   services: {
     id: string;
-    icon?: React.ComponentType;
+    icon?:ImageData | ImageData[];
     title: string;
     desc: string;
     list_values?: { id: string; values: string }[];
@@ -97,6 +98,7 @@ interface OurServicesProps {
 }
 
 export default function OurServices({ services, header }: OurServicesProps) {
+  console.log("OurServices Data:", services);
   return (
     <div>
       {/* Hero Section */}
@@ -120,15 +122,25 @@ export default function OurServices({ services, header }: OurServicesProps) {
       <section className="py-20 bg-white dark:bg-makmar-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((card) => (
+            {services.map((card, index) => (
               <Card
                 key={card.id}
                 className="bg-makmar-light dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow"
               >
                 <CardContent className="p-8">
-                  {/* <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mb-6">
-                    {card.icon && <card.icon className="text-white h-8 w-8" />}
-                  </div> */}
+                  <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mb-6">
+                    {/* {card.icon && <card.icon className="text-white h-8 w-8" />} */}
+                       
+                                               {Array.isArray(card.icon) &&
+                      card?.icon?.map((icon) => (
+                        <img
+                                            key={index}
+                                            src={icon?.url}
+                                            alt={icon?.alternativeText}
+                                            className="h-16 w-16"
+                                          />
+                      ))}
+                  </div>
                   <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
                     {card.desc}
