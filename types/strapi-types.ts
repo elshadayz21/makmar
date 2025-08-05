@@ -34,7 +34,8 @@ interface Card {
   title: string;
   description: string;
   list_values: service_feature_lists[];
-  icon: string;
+  // icon: string;
+  icon:ImageData | ImageData[];
 }
 
 interface serviceProcessCard {
@@ -107,6 +108,7 @@ export interface AboutItems {
     visionAndMission: serviceProcessCard[];
     tradingNetwork: serviceProcessCard;
     why_MakMarCard: Card[];
+    Global_Trading_Network: serviceProcessCard;
   };
 }
 

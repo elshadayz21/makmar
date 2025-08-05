@@ -1,6 +1,7 @@
 import { AboutItems } from "types/strapi-types";
 import { env } from "@shared/env";
 import "dotenv";
+import { processImageFormats } from "@shared/imageUtils";
 
 export const AboutItemFetch = async () => {
   const baseUrl = env.getStrapiUrl();
@@ -18,9 +19,6 @@ export const AboutItemFetch = async () => {
 
   const new_data = data.data;
 
-  console.log("✅ About Service - Base URL:", baseUrl);
-  console.log("✅ About Service - NODE_ENV:", env.NODE_ENV);
-  console.log("✅ About Service - STRAPI_PROD:", env.STRAPI_IP_PROD);
   console.log("new about items data", new_data);
 
   //   const data = res.data;
@@ -56,6 +54,9 @@ export const AboutItemFetch = async () => {
             id: new_data.Global_Trading_Network.id || "",
             title: new_data.Global_Trading_Network.title || "",
             description: new_data.Global_Trading_Network.desc || "",
+            icon: new_data?.Global_Trading_Network?.icon
+              ? [processImageFormats(new_data.Global_Trading_Network.icon)]
+              : [],
           },
         ]
       : [],
@@ -63,23 +64,37 @@ export const AboutItemFetch = async () => {
       ? new_data.vision_mission_card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
-          icon: card.icon || "",
+        icon: Array.isArray(card?.icon)
+            ? card.icon.map((icon: any) => processImageFormats(icon))
+            : processImageFormats(card?.icon),
           desc: card.desc || "",
           step: card.step || "",
-          
         }))
       : [],
-      why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
+    // why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
+    //   ? new_data.why_chose_MakMar_Card.map((card: any) => ({
+    //       id: card.id || "",
+    //       title: card.title || "",
+    //       icon: new_data?.card?.icon
+    //         ? [processImageFormats(new_data?.card?.icon)]
+    //         : [],
+    // desc: card.desc || "",
+    // step: card.step || "",
+    //     }))
+    //   : [],
+    why_chose_MakMar_Card: Array.isArray(new_data?.why_chose_MakMar_Card)
       ? new_data.why_chose_MakMar_Card.map((card: any) => ({
           id: card.id || "",
           title: card.title || "",
-          icon: card.icon || "",
+          why_chose_MakMar_Card: card.why_chose_MakMar_Card || "",
+          icon: Array.isArray(card?.icon)
+            ? card.icon.map((icon: any) => processImageFormats(icon))
+            : processImageFormats(card?.icon),
           desc: card.desc || "",
           step: card.step || "",
-          
         }))
       : [],
-  }
+  };
 
   return aboutItems;
 };

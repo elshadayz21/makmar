@@ -13,7 +13,7 @@ import { AboutItemFetch } from "../../../services/about";
 import { AboutItems } from "types/strapi-types";
 export default function About() {
   const { t } = useLanguage();
-const highlights = [
+  const highlights = [
     {
       icon: Award,
       title: "Excellence in Service",
@@ -36,7 +36,6 @@ const highlights = [
 
   const [AboutItemsData, setAboutItemsData] = useState<AboutItems>();
 
-  
   // Fetch footer items from the API
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -49,7 +48,10 @@ const highlights = [
   }, []);
 
   console.log("about data items", AboutItemsData);
-  console.log("Fetched About Items Data:", AboutItemsData);
+  console.log(
+    "Fetched About Items Data Global_Trading_Network:",
+    AboutItemsData?.data?.why_chose_MakMar_Card
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -90,7 +92,7 @@ const highlights = [
             })}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {AboutItemsData &&
-              AboutItemsData?.why_chose_MakMar_Card?.map((header) => {
+              AboutItemsData?.why_chose_MakMar_Card?.map((header, index) => {
                 // const IconComponent = highlight.icon;
                 return (
                   <Card
@@ -100,6 +102,33 @@ const highlights = [
                     <CardContent className="p-8 text-center">
                       <div className="w-16 h-16 bg-makmar-gold rounded-lg flex items-center justify-center mx-auto mb-6">
                         {/* <IconComponent className="text-white h-8 w-8" /> */}
+                        {/* {header?.icon?.map((icon, index) => (
+                      <img
+                        key={index}
+                        src={icon?.url}
+                        alt={icon?.alternativeText}
+                        className="text-white h-16 w-16"
+                      />
+                    ))} */}
+                     {/* {header &&
+                      header?.icon?.map((icon, index) => {
+                        return (
+                      <>
+                            <img
+                        key={index}
+                        src={icon?.url}
+                        alt={icon?.alternativeText}
+                        className="text-white h-16 w-16"
+                      />
+                      </>
+                        );
+                      })} */}
+                       <img
+                        key={index}
+                        src={header?.icon.url}
+                        alt={header?.icon?.alternativeText}
+                        className="text-white h-16 w-16"
+                      />
                       </div>
                       <h3 className="text-xl font-semibold mb-4">
                         {header.title}
@@ -123,7 +152,20 @@ const highlights = [
               return (
                 <div className="text-center" key={network.id}>
                   <div className="w-32 h-32 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-8">
-                    <Globe className="text-white h-16 w-16" />
+                    {/* <Globe className="text-white h-16 w-16" /> */}
+                    {/* <img
+                  src={network?.icon?.url}
+                  alt={network?.icon?.alternativeText}
+                  className="w-6 h-6"
+                /> */}
+                    {network?.icon?.map((icon, index) => (
+                      <img
+                        key={index}
+                        src={icon?.url}
+                        alt={icon?.alternativeText}
+                        className="text-white h-16 w-16"
+                      />
+                    ))}
                   </div>
                   {/* <h2 className="text-3xl sm:text-4xl font-bold mb-6">
               Global Trading <span className="text-makmar-gold">Network</span>

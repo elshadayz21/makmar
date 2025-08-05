@@ -64,7 +64,7 @@ export default function AboutMissionVision() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {AboutItemsData &&
-              AboutItemsData?.vision_mission_card?.map((card) => {
+              AboutItemsData?.vision_mission_card?.map((card,index) => {
                 return (
                   <Card
                     className="bg-makmar-light dark:bg-gray-800 border-makmar-gold border-2"
@@ -74,6 +74,12 @@ export default function AboutMissionVision() {
                       <div className="w-16 h-16 bg-makmar-gold rounded-full flex items-center justify-center mx-auto mb-6">
                         {/* <Target className="text-white h-8 w-8" /> */}
                         {/* {card.icon} */}
+                        <img
+                        key={index}
+                        src={card?.icon?.url}
+                        alt={card?.icon?.alternativeText}
+                        className="text-white h-10 w-10"
+                      />
                       </div>
                       <h3 className="text-2xl font-bold mb-4 text-makmar-gold">
                         {/* {t("about.mission")} */}
