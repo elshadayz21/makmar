@@ -16,10 +16,7 @@ export const HomePageItemFetch = async () => {
       },
     }
   );
-console.log("✅ Homepage Service - Base URL:", baseUrl);
-console.log("✅ Homepage Service - NODE_ENV:", env.NODE_ENV);
-console.log("✅ Homepage Service - STRAPI_PROD:", env.STRAPI_IP_PROD);
-console.log("✅ Homepage Service - DATABASE_URL:", env.DATABASE_URL);
+
   const data = await res.json();
 
   const new_data = data.data;
