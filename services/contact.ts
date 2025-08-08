@@ -3,6 +3,8 @@ import "dotenv";
 import { processImageFormats, processImageArray } from "@shared/imageUtils";
 export const ContactUsItemFetch = async () => {
    const baseUrl = env.getStrapiUrl();
+   let new_data
+try {
   const res = await fetch(
     `${baseUrl}/api/contact-us?populate=contactHeader&populate=contactInfo&populate=socialLink.icon&populate=findUsMap&populate=Getting_There`,
     {
@@ -12,10 +14,17 @@ export const ContactUsItemFetch = async () => {
       },
     }
   );
-
   const data = await res.json();
+   new_data = data.data;
 
-  const new_data = data.data;
+  // ...
+} catch (error) {
+  console.error('Error fetching contact us data:', error);
+}
+
+  // const data = await res.json();
+
+  // const new_data = data.data;
 
 
 

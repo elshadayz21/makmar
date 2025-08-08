@@ -3,7 +3,7 @@ export const env = {
   // Strapi URLs
   STRAPI_IP_DEV: typeof __VITE_STRAPI_IP_DEV__ !== 'undefined' 
     ? __VITE_STRAPI_IP_DEV__ 
-    : (typeof process !== 'undefined' ? (process.env.VITE_STRAPI_IP_DEV || 'http://localhost:1337') : 'http://localhost:1337'),
+    : (typeof process !== 'undefined' ? (process.env.VITE_STRAPI_IP_DEV || "") : ''),
   
   STRAPI_IP_PROD: typeof __VITE_STRAPI_IP_PROD__ !== 'undefined' 
     ? __VITE_STRAPI_IP_PROD__ 

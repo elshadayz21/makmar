@@ -41,7 +41,7 @@ export default function About() {
     const fetchMenuItems = async () => {
       const data = await AboutItemFetch();
       setAboutItemsData(data);
-      console.log("AboutItemsData", AboutItemsData?.data?.aboutHeader?.title);
+      console.log("Fetched AboutItemsData in useEffect:", data);
     };
 
     fetchMenuItems();

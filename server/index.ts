@@ -23,9 +23,17 @@ app.use(session({
   },
 }));
 
+// app.use(cors({
+//   origin: true, // or your frontend URL
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: "http://localhost:5011", // or your frontend URL
+  origin: ['*'],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: true,
 }));
 
 app.use((req, res, next) => {
@@ -85,7 +93,7 @@ app.use((req, res, next) => {
   const port = parseInt(process.env.PORT || '5011', 10);
   server.listen({
     port,
-    // host: "0.0.0.0",
+    host: "0.0.0.0",
     // reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
