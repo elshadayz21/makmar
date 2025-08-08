@@ -4,6 +4,7 @@ interface PageHeader {
   id: number;
   title: string;
   description: string;
+  ctaButton?: ctaButton;
 }
 // interface ServiceHeader {
 //   id: number;

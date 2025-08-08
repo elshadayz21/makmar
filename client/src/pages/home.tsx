@@ -133,7 +133,7 @@ export default function Home() {
       id: cta.id,
       title: cta.title,
       link: cta.link,
-      icon: cta.icon,
+      // icon: cta.icon,
     })) || []
   }
       />

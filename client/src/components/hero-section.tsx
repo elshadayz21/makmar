@@ -61,7 +61,8 @@ export function HeroSection({
                 })}
             
             </div>
-            {/* <div className="flex flex-col sm:flex-row gap-4">
+            
+               <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
                 replace
@@ -83,7 +84,7 @@ export function HeroSection({
                   {t("hero.learnMore")}
                 </Button>
               </Link>
-            </div> */}
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               {headerCTAvalues &&
                 headerCTAvalues.map((header, index) => {
